@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up | NirmanFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c5c6cd",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#45474c",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-container": "#fea619",
+                        "primary-container": "#1e293b",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#0b1426",
+                        "primary-fixed": "#d8e3fb",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8590a6",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#111c2d",
+                        "on-secondary-fixed": "#2a1700",
+                        "inverse-surface": "#2d3133",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#091426",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed": "#131b2e",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#bcc7de",
+                        "surface-tint": "#545f73",
+                        "outline": "#75777d",
+                        "on-tertiary-container": "#888fa7",
+                        "secondary": "#855300",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#20283c",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-secondary-container": "#684000",
+                        "surface": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "sidebar-width": "260px",
+                        "2xl": "48px",
+                        "xl": "32px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-data": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-gradient {
+            background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(247,249,251,1) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface overflow-x-hidden min-h-screen flex flex-col">
+<main class="flex-grow flex items-center justify-center py-2xl px-md lg:px-0">
+<div class="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden rounded-xl border border-outline-variant bg-surface shadow-sm min-h-[700px]">
+<!-- Left Side: Brand Imagery & Trust Signals -->
+<div class="hidden lg:flex lg:col-span-6 bg-tertiary relative overflow-hidden flex-col justify-between p-xl">
+<!-- Branding -->
+<div class="z-10">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-[32px]" data-icon="architecture">architecture</span>
+<span class="font-headline-md text-headline-md text-white font-bold tracking-tight">NirmanFlow</span>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute top-0 right-0 w-full h-full opacity-20 pointer-events-none">
+<img alt="Architectural Blueprint" class="w-full h-full object-cover" data-alt="A high-angle architectural photograph of a modern construction site with clean lines and structural complexity. The scene is bathed in cool, professional morning light, highlighting the precision of the steel and concrete. The aesthetic is corporate and authoritative, utilizing a palette of deep slate, whites, and metallic grays to convey systematic control and engineering reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9oBFBUaLmzWJK4SI_p7Y5-tjRoXfrtAupgM8Ba02YLQfWsW8rS2U3HPcCfWdDfx8vrLuwmUS5aTaufPHtSOWsQwBUsExj1QSJcQfAgP2kuhYWAQykOIphG8goB7qxp0Ftqy1loYKfHShXLoDoyXfsZDFYL-ILD2J3G1UNjlZWshA_WVOdi9U4eoIq0Hhgk7rVNTpd4q3OOd8FJTsoYvJVVhThHXa-LHmJiU7RR-HYkCwLyMqqLjirRef-4SdZel5RyHRXBsLaex8"/>
+</div>
+<!-- Trust Section -->
+<div class="z-10 space-y-lg">
+<h2 class="font-display-lg text-display-lg text-white max-w-md">Precision in every pillar.</h2>
+<div class="space-y-md">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="verified_user">verified_user</span>
+<div>
+<p class="font-title-md text-title-md text-white">Bank-Grade Security</p>
+<p class="font-body-md text-body-md text-on-primary-container">Encryption at rest and in transit for all financial documents.</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="query_stats">query_stats</span>
+<div>
+<p class="font-title-md text-title-md text-white">Real-time Financials</p>
+<p class="font-body-md text-body-md text-on-primary-container">Automated budget tracking and cashflow forecasting.</p>
+</div>
+</div>
+</div>
+<div class="pt-xl border-t border-white/10">
+<p class="font-label-caps text-label-caps text-on-primary-container uppercase tracking-widest">Trusted by over 500+ Engineering Firms</p>
+</div>
+</div>
+</div>
+<!-- Right Side: Sign Up Form -->
+<div class="col-span-1 lg:col-span-6 flex flex-col justify-center p-xl lg:p-2xl bg-surface-container-lowest">
+<div class="max-w-md mx-auto w-full">
+<!-- Mobile Logo (Hidden on Desktop) -->
+<div class="lg:hidden flex items-center gap-sm mb-xl">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="architecture">architecture</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">NirmanFlow</span>
+</div>
+<div class="mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Join NirmanFlow</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Start managing your construction projects with systematic precision today.</p>
+</div>
+<form action="#" class="space-y-lg" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div class="space-y-xs">
+<label class="font-body-sm text-body-sm font-medium text-on-surface-variant" for="name">Full Name</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="person">person</span>
+</div>
+<input class="w-full pl-xl pr-md py-md bg-surface border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-outline-variant" id="name" name="name" placeholder="Alexander Hamilton" required="" type="text"/>
+</div>
+</div>
+<!-- Work Email -->
+<div class="space-y-xs">
+<label class="font-body-sm text-body-sm font-medium text-on-surface-variant" for="email">Work Email</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="mail">mail</span>
+</div>
+<input class="w-full pl-xl pr-md py-md bg-surface border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-outline-variant" id="email" name="email" placeholder="alex@organization.com" required="" type="email"/>
+</div>
+</div>
+<!-- Organization Name -->
+<div class="space-y-xs">
+<label class="font-body-sm text-body-sm font-medium text-on-surface-variant" for="org">Organization Name</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="corporate_fare">corporate_fare</span>
+</div>
+<input class="w-full pl-xl pr-md py-md bg-surface border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-outline-variant" id="org" name="org" placeholder="Blue Sky Construction Ltd." required="" type="text"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-xs">
+<label class="font-body-sm text-body-sm font-medium text-on-surface-variant" for="password">Password</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="lock">lock</span>
+</div>
+<input class="w-full pl-xl pr-md py-md bg-surface border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-outline-variant" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+</div>
+<p class="text-[10px] text-on-surface-variant px-xs">Minimum 12 characters with at least one special character.</p>
+</div>
+<!-- Terms -->
+<div class="flex items-start gap-sm py-xs">
+<input class="mt-1 rounded-xs border-outline-variant text-primary focus:ring-primary cursor-pointer" id="terms" name="terms" required="" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="terms">
+                                I agree to the <a class="text-primary font-semibold hover:underline" href="#">Terms of Service</a> and <a class="text-primary font-semibold hover:underline" href="#">Privacy Policy</a>.
+                            </label>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary hover:bg-tertiary text-white font-title-md text-title-md py-md rounded-lg transition-all duration-200 active:scale-[0.98] shadow-sm hover:shadow-md flex items-center justify-center gap-sm" type="submit">
+                            Sign Up
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Link -->
+<div class="mt-xl pt-lg border-t border-outline-variant text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Already have an account? 
+                            <a class="text-primary font-bold hover:underline ml-xs" href="#">Sign In</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer (Legal only) -->
+<footer class="py-md px-md text-center">
+<p class="font-label-caps text-label-caps text-outline">© 2024 NirmanFlow Management Systems. All rights reserved.</p>
+</footer>
+<script>
+        // Interactive focus effects for form inputs
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '#091426';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '#75777d';
+            });
+        });
+
+        // Simple button interaction
+        const submitBtn = document.querySelector('button[type="submit"]');
+        submitBtn.addEventListener('click', () => {
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span> Processing...';
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalContent;
+                submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                alert('In a real application, this would register your account.');
+            }, 2000);
+        });
+    </script>
+</body></html>

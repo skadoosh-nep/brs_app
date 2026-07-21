@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#091426",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "surface-dim": "#d8dadc",
+            "on-secondary-container": "#684000",
+            "primary-container": "#1e293b",
+            "outline": "#75777d",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#eff1f3",
+            "surface-tint": "#545f73",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-container": "#8590a6",
+            "on-surface": "#191c1e",
+            "outline-variant": "#c5c6cd",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed": "#131b2e",
+            "surface-container-low": "#f2f4f6",
+            "on-secondary-fixed-variant": "#653e00",
+            "tertiary-fixed-dim": "#bec6e0",
+            "tertiary-fixed": "#dae2fd",
+            "on-surface-variant": "#45474c",
+            "on-secondary-fixed": "#2a1700",
+            "background": "#f7f9fb",
+            "primary-fixed-dim": "#bcc7de",
+            "on-background": "#191c1e",
+            "on-tertiary-container": "#888fa7",
+            "surface-bright": "#f7f9fb",
+            "secondary": "#855300",
+            "inverse-primary": "#bcc7de",
+            "tertiary-container": "#20283c",
+            "on-error": "#ffffff",
+            "inverse-surface": "#2d3133",
+            "surface-container": "#eceef0",
+            "surface-variant": "#e0e3e5",
+            "secondary-fixed": "#ffddb8",
+            "primary-fixed": "#d8e3fb",
+            "secondary-container": "#fea619",
+            "surface-container-high": "#e6e8ea",
+            "surface": "#f7f9fb",
+            "tertiary": "#0b1426",
+            "secondary-fixed-dim": "#ffb95f",
+            "surface-container-highest": "#e0e3e5",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed-variant": "#3c475a",
+            "on-primary-fixed": "#111c2d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "container-max": "1440px",
+            "2xl": "48px",
+            "xs": "4px",
+            "base": "4px",
+            "md": "16px",
+            "sidebar-width": "260px",
+            "lg": "24px",
+            "gutter": "20px",
+            "xl": "32px",
+            "sm": "8px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter"],
+            "label-data": ["JetBrains Mono"],
+            "body-lg": ["Inter"],
+            "title-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "label-caps": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"],
+            "title-md": ["Inter"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* SideNav Indicator Style */
+    .nav-item-active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: #fea619; /* Amber secondary-container style from guidance */
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-tertiary border-r border-outline-variant flex flex-col py-md z-50 overflow-y-auto scrollbar-hide">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-on-tertiary">NirmanFlow</h1>
+<p class="font-body-sm text-body-sm text-on-tertiary-container opacity-70">Construction Suite</p>
+</div>
+<nav class="flex-grow flex flex-col">
+<div class="px-md mb-xs">
+<button class="w-full bg-secondary-container text-on-secondary-container py-sm px-md rounded flex items-center justify-center gap-2 font-title-md cursor-pointer hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">add</span>
+          New Project
+        </button>
+</div>
+<!-- Navigation Tabs -->
+<a class="relative flex items-center gap-md px-lg py-md text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="relative flex items-center gap-md px-lg py-md text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="font-body-md">Tenders</span>
+</a>
+<!-- Active State mapping to Financials -->
+<div class="bg-primary-container/30 border-l-4 border-secondary">
+<a class="relative flex items-center gap-md px-lg py-md text-on-tertiary transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md font-bold">Financials</span>
+</a>
+<div class="px-lg pb-md flex flex-col gap-1">
+<button class="w-full text-left py-2 px-md text-body-sm text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container rounded flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[18px]">add_circle</span> Add Receipt
+          </button>
+<button class="w-full text-left py-2 px-md text-body-sm text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container rounded flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[18px]">post_add</span> Add JV
+          </button>
+</div>
+</div>
+<!-- Reports Section -->
+<div class="group">
+<a class="relative flex items-center gap-md px-lg py-md text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Reports</span>
+<span class="material-symbols-outlined ml-auto text-sm opacity-50 group-hover:rotate-90 transition-transform">chevron_right</span>
+</a>
+<div class="hidden group-hover:flex flex-col bg-primary-container/20 py-2">
+<a class="px-xl py-2 text-body-sm text-on-tertiary-container hover:text-on-tertiary" href="#">Ledger</a>
+<a class="px-xl py-2 text-body-sm text-on-tertiary-container hover:text-on-tertiary" href="#">JV Report</a>
+<a class="px-xl py-2 text-body-sm text-on-tertiary-container hover:text-on-tertiary" href="#">Account Statement</a>
+<a class="px-xl py-2 text-body-sm text-on-tertiary-container hover:text-on-tertiary" href="#">Trial Balance</a>
+<a class="px-xl py-2 text-body-sm text-on-tertiary-container hover:text-on-tertiary" href="#">Profit &amp; Loss</a>
+</div>
+</div>
+<a class="relative flex items-center gap-md px-lg py-md text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">construction</span>
+<span class="font-body-md">Projects</span>
+</a>
+<a class="relative flex items-center gap-md px-lg py-md text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-on-tertiary-container/10 pt-md">
+<a class="flex items-center gap-md px-lg py-md text-on-tertiary-container hover:text-on-tertiary hover:bg-primary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md">Support</span>
+</a>
+<div class="flex items-center gap-md px-lg py-md">
+<div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7lNkVY7bF2MhtxHZBH4epvXVSaY89o4e3ibJaZT5cqyVqJRG0p2m-6sUCzqSLAIMsp3_Byo5t2siCrx-ayEUR2629Iw-IkKX8Ga64bidad_nVfcyFdCWde3dv-u4ASUGPmBYGJyAQ6LUVhb0om-f5zofApVT9K7NNW6qKAOE5W5FAPK_Yj8vLUgmwol8e9YVUdO2TqFEfry2B__u-PeZmo4oI_mmjNiY1-ucrcAAXp8-Q2jB_aoWXv4RcRamkTltDEZ8fLfDxIGs"/>
+</div>
+<div class="flex-grow overflow-hidden">
+<p class="font-title-md text-on-tertiary truncate">Account</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-sidebar-width h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-lg z-40">
+<div class="flex items-center gap-xl">
+<h2 class="font-title-lg text-title-lg font-bold text-primary">Financial Management</h2>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">JV</a>
+<a class="font-title-md text-primary border-b-2 border-secondary pb-1 transition-all cursor-pointer" href="#">Money Receipts</a>
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">Trial Balance</a>
+<a class="font-title-md text-on-surface-variant hover:text-primary transition-all cursor-pointer" href="#">P&amp;L</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 w-64 focus:border-primary outline-none text-body-md" placeholder="Search transactions..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-md py-2 rounded-lg font-title-md hover:opacity-90 transition-all cursor-pointer">
+          Export Data
+        </button>
+</div>
+</header>
+<!-- Canvas Area -->
+<section class="flex-grow p-lg overflow-y-auto scrollbar-hide">
+<!-- Stats Overview (Asymmetric Layout) -->
+<div class="grid grid-cols-12 gap-gutter mb-xl">
+<div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white p-lg rounded-xl border border-outline-variant hover:border-secondary transition-all">
+<p class="font-label-caps text-on-surface-variant mb-xs">TOTAL RECEIVED (MTD)</p>
+<h3 class="font-headline-md text-primary">$428,500.00</h3>
+<div class="flex items-center gap-1 text-secondary mt-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-label-data">12% vs last month</span>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl border border-outline-variant">
+<p class="font-label-caps text-on-surface-variant mb-xs">CASH ON HAND</p>
+<h3 class="font-headline-md text-primary">$12,405.00</h3>
+<p class="font-body-sm text-on-surface-variant mt-sm">Sync with Petty Cash active</p>
+</div>
+<div class="bg-white p-lg rounded-xl border border-outline-variant">
+<p class="font-label-caps text-on-surface-variant mb-xs">BANK TRANSFERS</p>
+<h3 class="font-headline-md text-primary">$396,100.00</h3>
+<p class="font-body-sm text-on-surface-variant mt-sm">Across 4 major accounts</p>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 bg-primary-container p-lg rounded-xl text-on-primary relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label-caps opacity-70 mb-xs">PENDING RECONCILIATION</p>
+<h3 class="font-headline-md">14 Receipts</h3>
+<button class="mt-md text-secondary-fixed font-title-md flex items-center gap-1 hover:underline">
+              Resolve Now <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined !text-[120px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-white rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<!-- Filter Header -->
+<div class="p-lg border-b border-outline-variant flex flex-wrap items-center justify-between gap-md bg-surface-container-lowest">
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-2 px-md py-2 bg-surface-container-low rounded border border-outline-variant">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+<span class="font-body-md">Oct 1 - Oct 31, 2023</span>
+</div>
+<div class="flex items-center gap-2 px-md py-2 bg-surface-container-low rounded border border-outline-variant">
+<span class="material-symbols-outlined text-outline">filter_list</span>
+<span class="font-body-md">All Projects</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-body-sm text-on-surface-variant">Showing 1-10 of 142 receipts</span>
+<div class="flex gap-2">
+<button class="p-1 hover:bg-surface-container rounded border border-outline-variant">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded border border-outline-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-lg py-md font-label-caps text-on-surface-variant border-b border-outline-variant">RECEIPT NO.</th>
+<th class="px-lg py-md font-label-caps text-on-surface-variant border-b border-outline-variant">DATE</th>
+<th class="px-lg py-md font-label-caps text-on-surface-variant border-b border-outline-variant">PROJECT NAME</th>
+<th class="px-lg py-md font-label-caps text-on-surface-variant border-b border-outline-variant">RECEIVED FROM</th>
+<th class="px-lg py-md font-label-caps text-on-surface-variant border-b border-outline-variant text-right">AMOUNT</th>
+<th class="px-lg py-md font-label-caps text-on-surface-variant border-b border-outline-variant">MODE</th>
+<th class="px-lg py-md font-label-caps text-on-surface-variant border-b border-outline-variant text-right">ACTIONS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-lg py-md font-label-data text-primary">#MR-2023-0941</td>
+<td class="px-lg py-md font-body-md">Oct 24, 2023</td>
+<td class="px-lg py-md font-title-md">Skyline Residency Phase II</td>
+<td class="px-lg py-md font-body-md">Modern Infrastructure Ltd.</td>
+<td class="px-lg py-md font-label-data text-right font-bold">$125,000.00</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-wider">Bank</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="bg-primary-container text-on-primary-container hover:text-white px-md py-1.5 rounded text-body-sm font-title-md transition-all flex items-center gap-2 ml-auto">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                    Generate PDF
+                  </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-lg py-md font-label-data text-primary">#MR-2023-0942</td>
+<td class="px-lg py-md font-body-md">Oct 23, 2023</td>
+<td class="px-lg py-md font-title-md">Riverfront Commercial Hub</td>
+<td class="px-lg py-md font-body-md">A.K. Builders</td>
+<td class="px-lg py-md font-label-data text-right font-bold">$45,500.00</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 rounded-full bg-orange-50 text-orange-700 text-[11px] font-bold uppercase tracking-wider">Cheque</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="bg-primary-container text-on-primary-container hover:text-white px-md py-1.5 rounded text-body-sm font-title-md transition-all flex items-center gap-2 ml-auto">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                    Generate PDF
+                  </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-lg py-md font-label-data text-primary">#MR-2023-0943</td>
+<td class="px-lg py-md font-body-md">Oct 22, 2023</td>
+<td class="px-lg py-md font-title-md">Green Valley Estates</td>
+<td class="px-lg py-md font-body-md">Personal Advance - John D.</td>
+<td class="px-lg py-md font-label-data text-right font-bold">$2,000.00</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold uppercase tracking-wider">Cash</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="bg-primary-container text-on-primary-container hover:text-white px-md py-1.5 rounded text-body-sm font-title-md transition-all flex items-center gap-2 ml-auto">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                    Generate PDF
+                  </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group border-l-4 border-l-secondary">
+<td class="px-lg py-md font-label-data text-primary">#MR-2023-0944</td>
+<td class="px-lg py-md font-body-md">Oct 22, 2023</td>
+<td class="px-lg py-md font-title-md">Metro Extension P4</td>
+<td class="px-lg py-md font-body-md">State Transit Auth</td>
+<td class="px-lg py-md font-label-data text-right font-bold">$250,000.00</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-wider">Bank</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="bg-primary-container text-on-primary-container hover:text-white px-md py-1.5 rounded text-body-sm font-title-md transition-all flex items-center gap-2 ml-auto">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                    Generate PDF
+                  </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-lg py-md font-label-data text-primary">#MR-2023-0945</td>
+<td class="px-lg py-md font-body-md">Oct 21, 2023</td>
+<td class="px-lg py-md font-title-md">Skyline Residency Phase II</td>
+<td class="px-lg py-md font-body-md">Internal Transfer</td>
+<td class="px-lg py-md font-label-data text-right font-bold">$3,500.00</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold uppercase tracking-wider">Cash</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="bg-primary-container text-on-primary-container hover:text-white px-md py-1.5 rounded text-body-sm font-title-md transition-all flex items-center gap-2 ml-auto">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                    Generate PDF
+                  </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Pagination Info -->
+<div class="px-lg py-md border-t border-outline-variant bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-on-surface-variant">Records per page:</span>
+<select class="bg-transparent border-none font-body-sm outline-none cursor-pointer">
+<option>10</option>
+<option>25</option>
+<option>50</option>
+</select>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-label-data text-on-surface-variant">1 - 10 OF 142</span>
+<div class="flex gap-xs">
+<button class="p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">first_page</span></button>
+<button class="p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+<button class="p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">last_page</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent PDF Activity (Bento style small cards) -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-white p-md rounded border border-outline-variant flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-red-50 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant">LATEST PDF</p>
+<p class="font-body-sm truncate">#MR-2023-0941.pdf</p>
+</div>
+</div>
+<div class="bg-white p-md rounded border border-outline-variant flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-blue-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mail</span>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant">EMAILS SENT</p>
+<p class="font-body-sm">42 Today</p>
+</div>
+</div>
+<div class="bg-white p-md rounded border border-outline-variant flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-emerald-50 flex items-center justify-center text-emerald-700">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant">VERIFIED</p>
+<p class="font-body-sm">98.2% Accuracy</p>
+</div>
+</div>
+<div class="bg-white p-md rounded border border-outline-variant flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant">LAST SYNC</p>
+<p class="font-body-sm">2 minutes ago</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script>
+    // Micro-interaction for buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('mousedown', () => {
+        button.style.transform = 'scale(0.98)';
+        button.style.opacity = '0.8';
+      });
+      button.addEventListener('mouseup', () => {
+        button.style.transform = 'scale(1)';
+        button.style.opacity = '1';
+      });
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = 'scale(1)';
+        button.style.opacity = '1';
+      });
+    });
+
+    // Row hover effect enhancements
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        row.style.boxShadow = 'inset 0 0 0 1px rgba(133, 83, 0, 0.1)';
+      });
+      row.addEventListener('mouseleave', () => {
+        row.style.boxShadow = 'none';
+      });
+    });
+  </script>
+</body></html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    .otp-input:focus {
+      border-color: #091426;
+      box-shadow: 0 0 0 2px rgba(9, 20, 38, 0.1);
+    }
+    .gradient-blur {
+      background: radial-gradient(circle at 50% 50%, rgba(254, 166, 25, 0.05) 0%, rgba(247, 249, 251, 0) 70%);
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "tertiary-fixed": "#dae2fd",
+                  "on-background": "#191c1e",
+                  "surface-container-highest": "#e0e3e5",
+                  "error": "#ba1a1a",
+                  "primary-container": "#1e293b",
+                  "surface-tint": "#545f73",
+                  "surface-container-low": "#f2f4f6",
+                  "secondary-container": "#fea619",
+                  "inverse-surface": "#2d3133",
+                  "on-secondary-fixed-variant": "#653e00",
+                  "on-primary-fixed": "#111c2d",
+                  "on-primary-container": "#8590a6",
+                  "on-surface-variant": "#45474c",
+                  "primary-fixed": "#d8e3fb",
+                  "secondary-fixed-dim": "#ffb95f",
+                  "tertiary": "#0b1426",
+                  "on-surface": "#191c1e",
+                  "inverse-primary": "#bcc7de",
+                  "surface-container-lowest": "#ffffff",
+                  "on-secondary": "#ffffff",
+                  "on-error": "#ffffff",
+                  "primary-fixed-dim": "#bcc7de",
+                  "on-tertiary": "#ffffff",
+                  "background": "#f7f9fb",
+                  "primary": "#091426",
+                  "on-secondary-fixed": "#2a1700",
+                  "tertiary-fixed-dim": "#bec6e0",
+                  "tertiary-container": "#20283c",
+                  "surface-variant": "#e0e3e5",
+                  "outline": "#75777d",
+                  "on-tertiary-fixed": "#131b2e",
+                  "surface-container-high": "#e6e8ea",
+                  "on-primary-fixed-variant": "#3c475a",
+                  "secondary": "#855300",
+                  "surface-dim": "#d8dadc",
+                  "secondary-fixed": "#ffddb8",
+                  "on-tertiary-fixed-variant": "#3f465c",
+                  "on-primary": "#ffffff",
+                  "on-error-container": "#93000a",
+                  "on-tertiary-container": "#888fa7",
+                  "on-secondary-container": "#684000",
+                  "inverse-on-surface": "#eff1f3",
+                  "surface": "#f7f9fb",
+                  "surface-container": "#eceef0",
+                  "error-container": "#ffdad6",
+                  "surface-bright": "#f7f9fb",
+                  "outline-variant": "#c5c6cd"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "lg": "24px",
+                  "gutter": "20px",
+                  "2xl": "48px",
+                  "sidebar-width": "260px",
+                  "container-max": "1440px",
+                  "xs": "4px",
+                  "xl": "32px",
+                  "base": "4px",
+                  "sm": "8px",
+                  "md": "16px"
+          },
+          "fontFamily": {
+                  "title-md": ["Inter"],
+                  "label-caps": ["Inter"],
+                  "display-lg": ["Inter"],
+                  "title-lg": ["Inter"],
+                  "headline-lg-mobile": ["Inter"],
+                  "headline-lg": ["Inter"],
+                  "body-sm": ["Inter"],
+                  "headline-md": ["Inter"],
+                  "label-data": ["JetBrains Mono"],
+                  "body-md": ["Inter"],
+                  "body-lg": ["Inter"]
+          },
+          "fontSize": {
+                  "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                  "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                  "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                  "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                  "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                  "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                  "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col items-center justify-center p-md overflow-hidden relative">
+<!-- Background Decorative Elements -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] gradient-blur rounded-full opacity-50"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] gradient-blur rounded-full opacity-50"></div>
+<!-- Subtle Grid Pattern -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#091426 1px, transparent 0); background-size: 40px 40px;"></div>
+</div>
+<!-- Content Container -->
+<main class="w-full max-w-[480px] bg-surface-container-lowest border border-outline-variant p-xl shadow-sm rounded-lg relative z-10">
+<!-- Brand Anchor -->
+<div class="flex flex-col items-center mb-xl">
+<div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-surface text-[32px]">architecture</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">NirmanFlow</h1>
+</div>
+<!-- Header Section -->
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Verify Your Email</h2>
+<p class="font-body-md text-on-surface-variant max-w-[360px] mx-auto">
+        We've sent a verification code to your email address. Please enter the 6-digit code below to confirm your account.
+      </p>
+</div>
+<!-- OTP Input Section -->
+<form class="space-y-xl" id="otp-form">
+<div class="flex justify-between gap-sm sm:gap-md" id="otp-container">
+<input class="otp-input w-full aspect-square text-center font-headline-md text-headline-md border border-outline-variant rounded-lg bg-surface-container-low transition-all focus:ring-0 focus:outline-none" maxlength="1" required="" type="number"/>
+<input class="otp-input w-full aspect-square text-center font-headline-md text-headline-md border border-outline-variant rounded-lg bg-surface-container-low transition-all focus:ring-0 focus:outline-none" maxlength="1" required="" type="number"/>
+<input class="otp-input w-full aspect-square text-center font-headline-md text-headline-md border border-outline-variant rounded-lg bg-surface-container-low transition-all focus:ring-0 focus:outline-none" maxlength="1" required="" type="number"/>
+<input class="otp-input w-full aspect-square text-center font-headline-md text-headline-md border border-outline-variant rounded-lg bg-surface-container-low transition-all focus:ring-0 focus:outline-none" maxlength="1" required="" type="number"/>
+<input class="otp-input w-full aspect-square text-center font-headline-md text-headline-md border border-outline-variant rounded-lg bg-surface-container-low transition-all focus:ring-0 focus:outline-none" maxlength="1" required="" type="number"/>
+<input class="otp-input w-full aspect-square text-center font-headline-md text-headline-md border border-outline-variant rounded-lg bg-surface-container-low transition-all focus:ring-0 focus:outline-none" maxlength="1" required="" type="number"/>
+</div>
+<!-- Actions -->
+<div class="space-y-md">
+<button class="w-full h-12 bg-primary text-on-primary font-title-md text-title-md rounded-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm shadow-md" type="submit">
+          Verify and Continue
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<div class="text-center">
+<p class="font-body-md text-on-surface-variant">
+            Didn't receive the code? 
+            <button class="text-secondary font-semibold hover:underline underline-offset-4 ml-1" type="button">Resend Code</button>
+</p>
+</div>
+</div>
+</form>
+<!-- Footer Action -->
+<div class="mt-2xl pt-xl border-t border-outline-variant flex flex-col items-center">
+<a class="group flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-title-md text-title-md" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">keyboard_backspace</span>
+        Back to Sign Up
+      </a>
+</div>
+</main>
+<!-- Atmospheric Background Art Card -->
+<div class="hidden lg:block absolute bottom-12 right-12 w-64 h-32 opacity-20 hover:opacity-100 transition-opacity cursor-default">
+<div class="relative w-full h-full bg-surface-container-highest rounded-xl border border-outline p-md flex flex-col justify-end">
+<div class="absolute top-0 right-0 p-md opacity-40">
+<span class="material-symbols-outlined text-[48px]">verified_user</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">SECURITY PROTOCOL</p>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Multi-factor verification active for construction safety standards.</p>
+</div>
+</div>
+<script>
+    // OTP Input Logic
+    const inputs = document.querySelectorAll('.otp-input');
+    
+    inputs.forEach((input, index) => {
+      // Handle typing
+      input.addEventListener('input', (e) => {
+        if (e.target.value.length > 1) {
+          e.target.value = e.target.value.slice(0, 1);
+        }
+        if (e.target.value && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      // Handle backspace
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !e.target.value && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+
+      // Paste support
+      input.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const data = e.clipboardData.getData('text').slice(0, inputs.length);
+        const characters = data.split('');
+        characters.forEach((char, i) => {
+          if (inputs[index + i]) {
+            inputs[index + i].value = char;
+            if (index + i + 1 < inputs.length) {
+              inputs[index + i + 1].focus();
+            }
+          }
+        });
+      });
+    });
+
+    // Form Submission Interaction
+    document.getElementById('otp-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined animate-spin">progress_activity</span> Verifying...`;
+      
+      setTimeout(() => {
+        btn.classList.replace('bg-primary', 'bg-green-600');
+        btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Verified Successfully`;
+        
+        // Mock redirect
+        setTimeout(() => {
+          console.log("Redirecting to dashboard...");
+        }, 1000);
+      }, 1500);
+    });
+  </script>
+</body></html>

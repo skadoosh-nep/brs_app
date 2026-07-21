@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirmanFlow - Tender Tracking Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kanban-column {
+            min-width: 300px;
+            max-width: 320px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c5c6cd;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#131b2e",
+                      "on-secondary-fixed-variant": "#653e00",
+                      "inverse-surface": "#2d3133",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#d8e3fb",
+                      "error-container": "#ffdad6",
+                      "secondary": "#855300",
+                      "outline-variant": "#c5c6cd",
+                      "on-surface": "#191c1e",
+                      "secondary-fixed-dim": "#ffb95f",
+                      "surface-container-highest": "#e0e3e5",
+                      "surface-container": "#eceef0",
+                      "tertiary-fixed": "#dae2fd",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#bcc7de",
+                      "on-tertiary-container": "#888fa7",
+                      "background": "#f7f9fb",
+                      "on-primary-fixed-variant": "#3c475a",
+                      "surface-tint": "#545f73",
+                      "surface-bright": "#f7f9fb",
+                      "on-background": "#191c1e",
+                      "on-tertiary-fixed-variant": "#3f465c",
+                      "on-primary-container": "#8590a6",
+                      "secondary-container": "#fea619",
+                      "primary": "#091426",
+                      "on-secondary-fixed": "#2a1700",
+                      "outline": "#75777d",
+                      "on-secondary-container": "#684000",
+                      "surface-dim": "#d8dadc",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#45474c",
+                      "on-primary-fixed": "#111c2d",
+                      "surface-container-high": "#e6e8ea",
+                      "error": "#ba1a1a",
+                      "tertiary": "#0b1426",
+                      "on-primary": "#ffffff",
+                      "surface": "#f7f9fb",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#e0e3e5",
+                      "tertiary-container": "#20283c",
+                      "primary-fixed-dim": "#bcc7de",
+                      "secondary-fixed": "#ffddb8",
+                      "on-error": "#ffffff",
+                      "primary-container": "#1e293b",
+                      "tertiary-fixed-dim": "#bec6e0"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "2xl": "48px",
+                      "container-max": "1440px",
+                      "lg": "24px",
+                      "gutter": "20px",
+                      "base": "4px",
+                      "sidebar-width": "260px"
+              },
+              "fontFamily": {
+                      "label-data": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "title-md": ["Inter"],
+                      "title-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "display-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Persistent Sidebar (SideNavBar) -->
+<aside class="flex flex-col h-full py-md bg-tertiary dark:bg-tertiary border-r border-outline-variant w-sidebar-width fixed left-0 top-0 z-40">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm">
+<img alt="NirmanFlow Logo" class="w-10 h-10 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmMPoCBi6eBYGv2JkETdqsouUMu-Uu0yPOaJv5lRo4r61qi_JNZEuGNuk2fzyKNalOA0KDJS0Ik6iD1-fVG_UXe5mxq1lYXmF-LL5twAiBfsWRLrxa_hPWAa_VubjP-5vF0bcoOvzpj63Phe58Npv7DRphUtOzeYXimD_Z_vkt7f9D_4Xa3cpFoNCrAQtd06gVSbtY0G7pWhwCqoSpbQQGoSFBY4E5QqhsjtazlHfvfZt6kf5GUg4GrTDk89SVg7UNMMCUbovNPnQ"/>
+<div>
+<h1 class="text-title-lg font-title-lg text-on-tertiary">NirmanFlow</h1>
+<p class="text-label-caps font-label-caps text-on-tertiary-container opacity-70">Management Suite</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-md py-sm text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="dashboard">dashboard</span>
+<span class="text-label-data font-label-data">Dashboard</span>
+</a>
+<a class="flex items-center px-md py-sm text-secondary-container border-l-4 border-secondary-container font-semibold bg-tertiary-container transition-all duration-150" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="gavel">gavel</span>
+<span class="text-label-data font-label-data">Tenders</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="text-label-data font-label-data">Financials</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="construction">construction</span>
+<span class="text-label-data font-label-data">Projects</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="settings">settings</span>
+<span class="text-label-data font-label-data">Settings</span>
+</a>
+</nav>
+<div class="px-md mt-auto">
+<button class="w-full flex items-center justify-center gap-sm bg-secondary-container text-on-secondary-container py-md rounded font-bold hover:opacity-90 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>Create New Project</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-sidebar-width flex flex-col min-h-screen">
+<!-- Top Navigation (TopNavBar) -->
+<header class="flex justify-between items-center w-full px-lg py-sm bg-surface-container-lowest dark:bg-surface-container-low border-b border-outline-variant sticky top-0 z-30">
+<div class="flex items-center gap-xl">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded text-body-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search Tenders..." type="text"/>
+</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">JV</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Money Receipts</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Trial Balance</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">P&amp;L</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<!-- Project Selector -->
+<div class="flex items-center bg-surface-container px-sm py-1 rounded border border-outline-variant mr-md">
+<span class="text-label-caps text-on-surface-variant mr-xs">Project:</span>
+<select class="bg-transparent border-none text-label-data font-label-data text-primary focus:ring-0 cursor-pointer py-0">
+<option>Metro Rail Expansion Phase II</option>
+<option>City Smart Hospital</option>
+<option>East-West Bridge Highway</option>
+</select>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all active:scale-95" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all active:scale-95" data-icon="apps">apps</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden flex items-center justify-center border border-outline-variant cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDec4c3Dh2gLRiXJzBNn12osGfIDaV870PqIKPiQIws0Y-oIz08DTFUrRantgg0kp8M1e70aLouUdvidxK__PR9ocLmQOjN_kZujCqWFuZbL2736-1s_4NOnmTz2j9BU9XwE2n3jK-PPNHZPvnH_Pk237BzH_sJrS508dUWt4nae2eYJH1raJseE8GdX0qjTAhHWMYn5zMek3VWksAy7ksUX_w4qvm8SX0H6AqgK0X2cur-bqEelSU1knydILK-sumnxN8XH933ugY"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content Container -->
+<div class="p-lg flex-1 flex flex-col gap-lg overflow-hidden">
+<!-- Page Header & View Toggle -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-headline-md font-headline-md text-primary mb-xs">Tender Tracking Module</h2>
+<p class="text-body-md text-on-surface-variant">Manage bidding lifecycle and monitor financial proposals.</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center bg-surface-container-highest p-1 rounded border border-outline-variant">
+<button class="flex items-center gap-xs px-md py-1 rounded-sm bg-surface-container-lowest shadow-sm text-primary font-semibold transition-all" id="kanbanBtn">
+<span class="material-symbols-outlined text-sm" data-icon="view_kanban">view_kanban</span>
+<span class="text-label-caps">Kanban</span>
+</button>
+<button class="flex items-center gap-xs px-md py-1 rounded-sm text-on-surface-variant font-medium hover:text-primary transition-all" id="tableBtn">
+<span class="material-symbols-outlined text-sm" data-icon="table_rows">table_rows</span>
+<span class="text-label-caps">Table</span>
+</button>
+</div>
+<button class="flex items-center gap-sm px-lg py-sm bg-primary text-on-primary rounded font-bold hover:opacity-90 transition-all">
+<span class="material-symbols-outlined" data-icon="file_upload">file_upload</span>
+<span>Export Report</span>
+</button>
+</div>
+</div>
+<!-- Pipeline / Kanban Board -->
+<div class="flex-1 flex gap-gutter overflow-x-auto pb-lg custom-scrollbar" id="kanbanBoard">
+<!-- Preparation Column -->
+<div class="kanban-column flex flex-col gap-md">
+<div class="flex justify-between items-center px-xs border-b-2 border-outline-variant pb-sm">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant">Preparation</h3>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full text-[10px] font-bold">3</span>
+</div>
+<button class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="more_vert">more_vert</button>
+</div>
+<div class="flex flex-col gap-md overflow-y-auto pr-1 custom-scrollbar">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-data text-on-surface-variant opacity-70">#TND-9012</span>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold">Urgent</span>
+</div>
+<h4 class="text-title-md font-title-md text-primary mb-xs">NHAI Bypass Phase 4</h4>
+<p class="text-body-sm text-on-surface-variant mb-md">National Highway Authority of India</p>
+<div class="flex flex-col gap-xs border-t border-outline-variant pt-md">
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Deadline</span>
+<span class="text-label-data">Oct 24, 2023</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Estimate</span>
+<span class="text-label-data font-bold text-secondary">₹142.50 Cr</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md hover:shadow-md transition-shadow cursor-grab">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-data text-on-surface-variant opacity-70">#TND-9015</span>
+</div>
+<h4 class="text-title-md font-title-md text-primary mb-xs">Urban Sewage Redesign</h4>
+<p class="text-body-sm text-on-surface-variant mb-md">Municipal Corporation (West)</p>
+<div class="flex flex-col gap-xs border-t border-outline-variant pt-md">
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Deadline</span>
+<span class="text-label-data">Nov 02, 2023</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Estimate</span>
+<span class="text-label-data font-bold text-secondary">₹18.20 Cr</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Submitted Column -->
+<div class="kanban-column flex flex-col gap-md">
+<div class="flex justify-between items-center px-xs border-b-2 border-primary-fixed pb-sm">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-primary-fixed"></span>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant">Submitted</h3>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full text-[10px] font-bold">1</span>
+</div>
+<button class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="more_vert">more_vert</button>
+</div>
+<div class="flex flex-col gap-md overflow-y-auto pr-1">
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant border-l-4 border-l-secondary-container rounded p-md hover:shadow-md transition-shadow cursor-grab">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-data text-on-surface-variant opacity-70">#TND-8890</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold">Technical OK</span>
+</div>
+<h4 class="text-title-md font-title-md text-primary mb-xs">Solar Park Infrastructure</h4>
+<p class="text-body-sm text-on-surface-variant mb-md">RE-Corporation India</p>
+<div class="flex flex-col gap-xs border-t border-outline-variant pt-md">
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Submitted</span>
+<span class="text-label-data">Oct 10, 2023</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Proposal</span>
+<span class="text-label-data font-bold text-secondary">₹210.00 Cr</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Under Evaluation Column -->
+<div class="kanban-column flex flex-col gap-md">
+<div class="flex justify-between items-center px-xs border-b-2 border-secondary-container pb-sm">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant">Under Evaluation</h3>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full text-[10px] font-bold">2</span>
+</div>
+<button class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="more_vert">more_vert</button>
+</div>
+<div class="flex flex-col gap-md overflow-y-auto pr-1">
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md hover:shadow-md transition-shadow cursor-grab">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-data text-on-surface-variant opacity-70">#TND-7651</span>
+</div>
+<h4 class="text-title-md font-title-md text-primary mb-xs">State Hospital Expansion</h4>
+<p class="text-body-sm text-on-surface-variant mb-md">Public Health Dept.</p>
+<div class="flex flex-col gap-xs border-t border-outline-variant pt-md">
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Est. Award</span>
+<span class="text-label-data">Oct 30, 2023</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Proposal</span>
+<span class="text-label-data font-bold text-secondary">₹85.40 Cr</span>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md hover:shadow-md transition-shadow cursor-grab">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-label-data text-on-surface-variant opacity-70">#TND-7655</span>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold">L1 Position</span>
+</div>
+<h4 class="text-title-md font-title-md text-primary mb-xs">Green Corridor Highway</h4>
+<p class="text-body-sm text-on-surface-variant mb-md">MoRTH Authority</p>
+<div class="flex flex-col gap-xs border-t border-outline-variant pt-md">
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Est. Award</span>
+<span class="text-label-data">Nov 05, 2023</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-caps text-on-surface-variant">Proposal</span>
+<span class="text-label-data font-bold text-secondary">₹412.10 Cr</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Awarded Column -->
+<div class="kanban-column flex flex-col gap-md">
+<div class="flex justify-between items-center px-xs border-b-2 border-green-500 pb-sm">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant">Awarded</h3>
+<span class="bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[10px] font-bold">4</span>
+</div>
+<button class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="more_vert">more_vert</button>
+</div>
+<div class="flex flex-col gap-md overflow-y-auto pr-1">
+<div class="h-24 flex items-center justify-center border-2 border-dashed border-outline-variant rounded opacity-40">
+<span class="text-label-caps">Drop here to Award</span>
+</div>
+</div>
+</div>
+<!-- Rejected Column -->
+<div class="kanban-column flex flex-col gap-md">
+<div class="flex justify-between items-center px-xs border-b-2 border-error pb-sm">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant">Rejected</h3>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-full text-[10px] font-bold">12</span>
+</div>
+<button class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="more_vert">more_vert</button>
+</div>
+<div class="flex flex-col gap-md overflow-y-auto pr-1">
+<!-- Placeholder for history -->
+<div class="p-md text-center">
+<p class="text-label-data opacity-50">View history in Data Table</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom NavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-md pb-md pt-sm md:hidden bg-surface-container-highest shadow-lg rounded-t-xl z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-caps font-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-label-caps font-label-caps">Financials</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="text-label-caps font-label-caps">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-caps font-label-caps">Profile</span>
+</a>
+</nav>
+</main>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        const kanbanBtn = document.getElementById('kanbanBtn');
+        const tableBtn = document.getElementById('tableBtn');
+
+        kanbanBtn.addEventListener('click', () => {
+            kanbanBtn.classList.add('bg-surface-container-lowest', 'shadow-sm', 'text-primary');
+            kanbanBtn.classList.remove('text-on-surface-variant', 'font-medium');
+            tableBtn.classList.remove('bg-surface-container-lowest', 'shadow-sm', 'text-primary');
+            tableBtn.classList.add('text-on-surface-variant', 'font-medium');
+        });
+
+        tableBtn.addEventListener('click', () => {
+            tableBtn.classList.add('bg-surface-container-lowest', 'shadow-sm', 'text-primary');
+            tableBtn.classList.remove('text-on-surface-variant', 'font-medium');
+            kanbanBtn.classList.remove('bg-surface-container-lowest', 'shadow-sm', 'text-primary');
+            kanbanBtn.classList.add('text-on-surface-variant', 'font-medium');
+        });
+
+        // Simple Hover Effects for cards
+        const cards = document.querySelectorAll('.kanban-column > div > div');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

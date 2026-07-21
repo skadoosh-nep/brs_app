@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary": "#855300",
+                "on-primary-container": "#8590a6",
+                "on-tertiary-fixed": "#131b2e",
+                "tertiary-fixed": "#dae2fd",
+                "on-secondary-container": "#684000",
+                "on-error-container": "#93000a",
+                "error-container": "#ffdad6",
+                "tertiary-container": "#20283c",
+                "outline-variant": "#c5c6cd",
+                "on-primary": "#ffffff",
+                "primary-fixed": "#d8e3fb",
+                "surface-bright": "#f7f9fb",
+                "outline": "#75777d",
+                "on-surface-variant": "#45474c",
+                "inverse-primary": "#bcc7de",
+                "surface-tint": "#545f73",
+                "surface-container-high": "#e6e8ea",
+                "background": "#f7f9fb",
+                "tertiary": "#0b1426",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#1e293b",
+                "surface": "#f7f9fb",
+                "inverse-surface": "#2d3133",
+                "surface-container": "#eceef0",
+                "on-secondary-fixed": "#2a1700",
+                "on-error": "#ffffff",
+                "on-tertiary-fixed-variant": "#3f465c",
+                "on-surface": "#191c1e",
+                "error": "#ba1a1a",
+                "primary": "#091426",
+                "primary-fixed-dim": "#bcc7de",
+                "inverse-on-surface": "#eff1f3",
+                "surface-variant": "#e0e3e5",
+                "secondary-container": "#fea619",
+                "on-secondary-fixed-variant": "#653e00",
+                "secondary-fixed-dim": "#ffb95f",
+                "surface-dim": "#d8dadc",
+                "secondary-fixed": "#ffddb8",
+                "surface-container-highest": "#e0e3e5",
+                "on-tertiary-container": "#888fa7",
+                "on-background": "#191c1e",
+                "tertiary-fixed-dim": "#bec6e0",
+                "on-primary-fixed-variant": "#3c475a",
+                "on-tertiary": "#ffffff",
+                "surface-container-low": "#f2f4f6",
+                "on-primary-fixed": "#111c2d",
+                "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "xs": "4px",
+                "sm": "8px",
+                "sidebar-width": "260px",
+                "lg": "24px",
+                "container-max": "1440px",
+                "2xl": "48px",
+                "base": "4px",
+                "md": "16px",
+                "xl": "32px",
+                "gutter": "20px"
+            },
+            "fontFamily": {
+                "label-caps": ["Inter"],
+                "body-md": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "title-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "label-data": ["JetBrains Mono"],
+                "headline-lg": ["Inter"],
+                "body-sm": ["Inter"],
+                "display-lg": ["Inter"],
+                "title-md": ["Inter"]
+            },
+            "fontSize": {
+                "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .data-scrollbar::-webkit-scrollbar { display: none; }
+        .progress-bar-fill { transition: width 1s ease-in-out; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- Mobile Screen Wrapper -->
+<div class="flex flex-col min-h-screen pb-[80px]">
+<!-- Header Section -->
+<header class="bg-surface-container-lowest px-md pt-xl pb-md flex flex-col gap-md sticky top-0 z-40 shadow-sm">
+<div class="flex items-center justify-between">
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile text-primary">Projects</h1>
+<div class="flex gap-sm">
+<button class="p-xs text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-md text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-low border border-outline-variant text-body-md rounded-lg focus:outline-none focus:border-primary-container transition-all" placeholder="Search projects..." type="text"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow px-md py-md space-y-lg">
+<!-- Project Stats Summary (Bento-lite) -->
+<section class="grid grid-cols-2 gap-sm">
+<div class="bg-primary-container p-md rounded-xl flex flex-col justify-between h-[100px] border border-outline-variant/10 shadow-sm">
+<span class="text-label-caps font-label-caps text-on-primary-container">ACTIVE PROJECTS</span>
+<div class="flex items-end justify-between">
+<span class="text-headline-md font-headline-md text-on-primary">12</span>
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">construction</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl flex flex-col justify-between h-[100px] border border-outline-variant shadow-sm">
+<span class="text-label-caps font-label-caps text-on-surface-variant">TOTAL BUDGET</span>
+<div class="flex items-end justify-between">
+<span class="text-headline-md font-headline-md text-primary">$4.2M</span>
+<span class="material-symbols-outlined text-secondary">payments</span>
+</div>
+</div>
+</section>
+<!-- Projects List -->
+<section class="space-y-md">
+<div class="flex items-center justify-between px-xs">
+<h2 class="text-title-md font-title-md text-primary">Ongoing Tasks</h2>
+<span class="text-label-data font-label-data text-secondary">VIEW ALL</span>
+</div>
+<!-- Project Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-40">
+<img alt="Metro Heights Phase I" class="w-full h-full object-cover" data-alt="A wide angle photograph of a massive construction site for a modern high-rise development named Metro Heights Phase I. Several towering cranes are visible against a clear blue sky during the golden hour, casting long shadows across the reinforced concrete structure. Workers in safety vests are dispersed across the site, which is illuminated by warm, setting sunlight. The architectural style is futuristic, emphasizing steel beams and raw glass, perfectly matching the professional and authoritative NirmanFlow brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1bmHbPuNSNrQQz0-XbaIuYzUElAaIL86XdF0ussiJqwsN1BBZ3JGe8GjjzpMeAst1dw2lz9Uq1rgDWlCIExrF05PmU5EXrW6Y6PHkN3-B6FeXvtFYFNGGYsFRSC5jgE1_cdN8X4lXVVRQ8C5R5sFuwUxOoUB5XWWo8N9MF7TmE6pk-MayArkmZtTFfYoZJsKFLQyUNbc_c-TFuFqhHwnSTVOxCXDI18-ysNU2-0ULkWMO66wztPWPDvAnxyx_AhEgBCZ3QsvCtxE"/>
+<div class="absolute top-md right-md">
+<span class="bg-secondary-container text-on-secondary-container text-label-caps font-label-caps px-sm py-xs rounded-lg shadow-sm">IN PROGRESS</span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div>
+<h3 class="text-title-lg font-title-lg text-primary">Metro Heights Phase I</h3>
+<p class="text-body-sm text-on-surface-variant">Sector 45, Downtown Business District</p>
+</div>
+<!-- Progress Section -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center text-label-data font-label-data text-primary">
+<span>Project Progress</span>
+<span>65%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-md pt-sm border-t border-outline-variant">
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">BUDGET USED</span>
+<span class="text-label-data font-label-data text-primary">$1.2M / $2.0M</span>
+</div>
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">END DATE</span>
+<span class="text-label-data font-label-data text-primary">Dec 2024</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Project Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-40">
+<img alt="Skyline Apartments" class="w-full h-full object-cover" data-alt="A detailed architectural view of the Skyline Apartments under construction during a bright, high-key midday lighting. The image showcases the intricate scaffolding and the emerging glass facade of a luxury residential building. The aesthetic is extremely clean and systematic, reflecting a modern corporate design with a color palette of slate grays and muted blues. Professional construction equipment is visible at the base, emphasizing a sense of high-stakes management and absolute control over the financial and structural data of the project." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXek_MYORE9JhNptDLLPLO-vzf6ZsJCmt4yDIuziLDwzseZWPn-BWU1Xq5BqkV4DI49F5PKimml6SINP197lOvf3u48jOEKmvyj1-0SQo-TDW7An1FJs_lB0DyhIocfDuicr0FDulTYjWezRCv_mxhi9cH_Wdor7jwJUlaGgtaNwfe0HpxVvqLqhDgoFk39CnAydUlZnfT9-zHi5gbiG5OBhdKKp4bfMdYxIjzkpa4lCC4DPq-uBLMjqY4cPu6zXoLDBbNSsabKJw"/>
+<div class="absolute top-md right-md">
+<span class="bg-surface-container-highest text-on-surface-variant text-label-caps font-label-caps px-sm py-xs rounded-lg shadow-sm border border-outline-variant">ON HOLD</span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div>
+<h3 class="text-title-lg font-title-lg text-primary">Skyline Apartments</h3>
+<p class="text-body-sm text-on-surface-variant">North Hill Avenue, Regency Park</p>
+</div>
+<!-- Progress Section -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center text-label-data font-label-data text-primary">
+<span>Project Progress</span>
+<span>28%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-outline h-full rounded-full" style="width: 28%;"></div>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-md pt-sm border-t border-outline-variant">
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">BUDGET USED</span>
+<span class="text-label-data font-label-data text-primary">$450K / $1.5M</span>
+</div>
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">END DATE</span>
+<span class="text-label-data font-label-data text-primary">Mar 2025</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Project Card 3 (Completed Example) -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-40">
+<img alt="Oakwood Plaza" class="w-full h-full object-cover grayscale-[0.5]" data-alt="A finished commercial shopping center, Oakwood Plaza, captured at dusk with sophisticated exterior lighting highlighting its modern glass and wood paneling architecture. The image conveys a completed project status with pristine landscaping and a clean, high-end environment. The atmosphere is serene and successful, utilizing a professional color palette of deep navy blues and warm amber glow from the interior lights. The composition is systematic and geometrically pleasing, aligning with a premium construction management software visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGQnYKa7_dO_fQscxvtJyq4azeD7p-S86s5tDzPBsbrVm-4rSy1vxkF2cn-muEj2JfNGT0vUYtr91JF36_K1BAaSCnimNKBtZvtOXiJ5dN8eZnfKLeJ92JKuFZUsa3tcMuFCKW-ujcFVBjIfv0Vixm4LjWWBKoCtVgW1s1YJEVXpKf5RVoNV0_5Gjh5ea80xZblUiyF_B2IsPy4ewN9-q50hPkAoO8_9-xZy7Okrfq6o4ptrlLs5_TcV-oRvffj0oGHOgXO-NLank"/>
+<div class="absolute top-md right-md">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-caps font-label-caps px-sm py-xs rounded-lg shadow-sm">COMPLETED</span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div>
+<h3 class="text-title-lg font-title-lg text-primary">Oakwood Plaza</h3>
+<p class="text-body-sm text-on-surface-variant">East Bypass Road, Oakwood</p>
+</div>
+<!-- Progress Section -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center text-label-data font-label-data text-primary">
+<span>Project Progress</span>
+<span>100%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-md pt-sm border-t border-outline-variant">
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">FINAL COST</span>
+<span class="text-label-data font-label-data text-primary">$720K / $750K</span>
+</div>
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant block mb-xs">COMPLETED</span>
+<span class="text-label-data font-label-data text-primary">May 2024</span>
+</div>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-[96px] right-md w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'wght' 600;">add</span>
+</button>
+<!-- BottomNavBar (Shared Component) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-md pb-md pt-sm md:hidden bg-surface-container-highest border-t border-outline-variant z-50 shadow-lg">
+<!-- Home -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-caps font-label-caps">Home</span>
+</button>
+<!-- Financials -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-label-caps font-label-caps">Financials</span>
+</button>
+<!-- Projects (ACTIVE) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="text-label-caps font-label-caps">Projects</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-caps font-label-caps">Profile</span>
+</button>
+</nav>
+</div>
+<!-- Micro-interaction JavaScript -->
+<script>
+        // Simple search filter interaction (mock)
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('article');
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        if (card.style.opacity === '0') card.style.display = 'none';
+                    }, 200);
+                }
+            });
+        });
+
+        // Haptic feedback simulation for buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.style.transform = 'scale(0.96)';
+            });
+            btn.addEventListener('touchend', () => {
+                btn.style.transform = '';
+            });
+        });
+    </script>
+</body></html>

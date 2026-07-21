@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirmanFlow - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c5c6cd",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#45474c",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-container": "#fea619",
+                        "primary-container": "#1e293b",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#0b1426",
+                        "primary-fixed": "#d8e3fb",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8590a6",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#111c2d",
+                        "on-secondary-fixed": "#2a1700",
+                        "inverse-surface": "#2d3133",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#091426",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed": "#131b2e",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#bcc7de",
+                        "surface-tint": "#545f73",
+                        "outline": "#75777d",
+                        "on-tertiary-container": "#888fa7",
+                        "secondary": "#855300",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#20283c",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-secondary-container": "#684000",
+                        "surface": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "sidebar-width": "260px",
+                        "2xl": "48px",
+                        "xl": "32px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-data": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr
+    }
+.construction-overlay {
+    background-image: linear-gradient(to bottom, rgba(247, 249, 251, 0.85), rgba(247, 249, 251, 0.95)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuCmnUndt5I7fKw0azWFKXwoGQJhLYQGTyfvSXFCyaB40etGnc2pUGEtNwA5HqY6izfn0pboReesX0aKeQBAMaixOle9ISjz0U52a2bs-8OCdrVGOjXxkfLNoJnj_VwKo80JDL2cdXm0Y6jTPHCeaqhLdE4WlceIqo7JaV7_3vNeOFJb25g4Vutirj5P-Ad49GQQ702yTVhAeew6uKbE-ileVZlZ9qvl7nep2vDI_bDsQy66LpS2s1_o2s86VEUEDCw7IoFbPLIJrok);
+    background-size: cover;
+    background-position: center
+    }
+.floating-label-group {
+    position: relative
+    }
+.floating-label-group input:focus ~ label, .floating-label-group input:not(:placeholder-shown) ~ label {
+    top: -8px;
+    left: 10px;
+    font-size: 11px;
+    background: white;
+    padding: 0 4px;
+    color: #091426
+    }
+.floating-label-group label {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    transition: all 0.2s ease;
+    pointer-events: none
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<main class="min-h-screen flex items-center justify-center p-md construction-overlay relative overflow-hidden">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: radial-gradient(#091426 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="w-full max-w-[440px] z-10">
+<!-- Login Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-xl shadow-sm rounded-lg">
+<!-- Brand Anchor -->
+<div class="flex flex-col items-center mb-xl">
+<div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-on-primary text-[28px]" data-icon="architecture">architecture</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">NirmanFlow</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Systematic Construction Management</p>
+</div>
+<!-- Header -->
+<div class="mb-xl text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Welcome Back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Access your financial oversight dashboard</p>
+</div>
+<!-- Form -->
+<form class="space-y-lg" onsubmit="event.preventDefault()">
+<!-- Email Field -->
+<div class="floating-label-group">
+<input class="w-full h-14 px-md pt-base border border-outline rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-transparent text-on-surface font-body-md transition-all" id="email" placeholder=" " required="" type="email"/>
+<label class="font-body-md text-on-surface-variant" for="email">Corporate Email Address</label>
+</div>
+<!-- Password Field -->
+<div class="space-y-sm">
+<div class="floating-label-group">
+<input class="w-full h-14 px-md pt-base border border-outline rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-transparent text-on-surface font-body-md transition-all" id="password" placeholder=" " required="" type="password"/>
+<label class="font-body-md text-on-surface-variant" for="password">Security Password</label>
+</div>
+<div class="flex justify-end">
+<a class="font-label-caps text-label-caps text-secondary hover:text-on-secondary-container transition-colors duration-200" href="#">Forgot Password?</a>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-14 bg-primary text-on-primary font-title-md text-title-md rounded-lg hover:bg-tertiary transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-sm" type="submit">
+                        Sign In to Dashboard
+                        <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative my-xl">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-md bg-surface-container-lowest font-label-caps text-label-caps text-on-surface-variant">OR</span>
+</div>
+</div>
+<!-- Secondary Option -->
+<div class="text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        New to the platform?
+                        <a class="text-primary font-title-md hover:underline ml-xs" href="#">Create an Account</a>
+</p>
+</div>
+</div>
+<!-- Footer Legal -->
+<div class="mt-lg flex justify-between px-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">© 2024 NIRMANFLOW</span>
+<div class="flex gap-md">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+</div>
+</div>
+<!-- Decorative Construction Image (Background Visual) -->
+<img class="hidden" data-alt="A professional, high-angle architectural photograph of a modern steel and glass skyscraper under construction. The scene is bathed in cold, crisp morning light, highlighting the precise geometry of the structural beams. The color palette is dominated by slate grays and deep blues, aligning with a professional corporate aesthetic. The overall mood is systematic, authoritative, and represents large-scale project precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtu5lu9SNTrvDQzXqrIfQ7hzjiXKD_558co5Mr-ZktNDCfgWYWD27WJjUSCijbeB8lmEN_Khr9-9M_fH9IrlaTzEDrpSi5h6nBbFw0RD0DicMuRIWCghS7nD5eIWCZVzqQKvsSwbQDYJMzEnW6O0htUuVKfEtpXkm5xig8IpB6KOp8mPJWHclmLAroV7JNrJETfDCB-DDh9l-rdsmFqHAqUCMA9jFCiz6ODmSgYPOha7nFi0PACdsPBqTUr8kql3m_4fBhbvODRiU"/>
+</main>
+<script>
+        // Micro-interaction for the button
+        const loginBtn = document.querySelector('button[type="submit"]');
+        loginBtn.addEventListener('click', (e) => {
+            const originalContent = loginBtn.innerHTML;
+            loginBtn.innerHTML = `<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span> Authenticating...`;
+            loginBtn.classList.add('opacity-90');
+            
+            setTimeout(() => {
+                loginBtn.innerHTML = originalContent;
+                loginBtn.classList.remove('opacity-90');
+            }, 1500);
+        });
+
+        // Simple floating label persistence check
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                if(input.value !== "") {
+                    input.classList.add('has-value');
+                } else {
+                    input.classList.remove('has-value');
+                }
+            });
+        });
+    </script>
+</body></html>

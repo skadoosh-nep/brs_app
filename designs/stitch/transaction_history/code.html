@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#bcc7de",
+                      "tertiary-container": "#20283c",
+                      "surface-container-low": "#f2f4f6",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#e0e3e5",
+                      "surface-tint": "#545f73",
+                      "surface-container": "#eceef0",
+                      "inverse-primary": "#bcc7de",
+                      "tertiary-fixed-dim": "#bec6e0",
+                      "primary-container": "#1e293b",
+                      "outline": "#75777d",
+                      "secondary": "#855300",
+                      "surface-dim": "#d8dadc",
+                      "on-tertiary-container": "#888fa7",
+                      "on-secondary-fixed-variant": "#653e00",
+                      "inverse-surface": "#2d3133",
+                      "secondary-fixed": "#ffddb8",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#45474c",
+                      "on-primary-fixed": "#111c2d",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#eff1f3",
+                      "primary-fixed": "#d8e3fb",
+                      "on-primary": "#ffffff",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-surface": "#191c1e",
+                      "on-tertiary-fixed": "#131b2e",
+                      "surface-container-high": "#e6e8ea",
+                      "primary": "#091426",
+                      "surface-bright": "#f7f9fb",
+                      "secondary-fixed-dim": "#ffb95f",
+                      "on-secondary-container": "#684000",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#3c475a",
+                      "on-background": "#191c1e",
+                      "background": "#f7f9fb",
+                      "on-primary-container": "#8590a6",
+                      "on-secondary-fixed": "#2a1700",
+                      "on-tertiary-fixed-variant": "#3f465c",
+                      "on-error-container": "#93000a",
+                      "surface": "#f7f9fb",
+                      "secondary-container": "#fea619",
+                      "tertiary": "#0b1426",
+                      "outline-variant": "#c5c6cd",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "md": "16px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "container-max": "1440px",
+                      "gutter": "20px",
+                      "xs": "4px",
+                      "2xl": "48px",
+                      "xl": "32px",
+                      "sidebar-width": "260px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "label-data": ["JetBrains Mono"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "title-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "title-lg": ["Inter"],
+                      "display-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .transaction-list-container {
+            height: calc(100vh - 140px);
+        }
+        /* Custom scrollbar for density-focused UI */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest flex justify-between items-center w-full px-lg py-sm sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<button class="p-2 -ml-2 text-on-surface-variant active:scale-95 transition-transform" onclick="window.history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-title-lg font-title-lg text-primary">Transactions</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors" id="openFilter">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Scrollable Transaction List -->
+<main class="transaction-list-container overflow-y-auto px-md py-sm">
+<!-- Date Group Header -->
+<div class="flex items-center justify-between py-xs mb-sm">
+<span class="text-label-caps font-label-caps text-on-surface-variant">TODAY, OCT 24</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">TOTAL: ₹1,45,000.00</span>
+</div>
+<!-- Transaction Cards -->
+<div class="space-y-sm">
+<!-- Item 1: Money Receipt (Income) -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md flex items-center justify-between active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<div class="flex items-center gap-xs">
+<span class="text-label-caps font-label-caps text-on-surface-variant">MR-8821</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">·</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">MONEY RECEIPT</span>
+</div>
+<h3 class="text-title-md font-title-md text-on-surface truncate max-w-[180px]">Skyline Residency Ph. II</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">14:32 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-title-md font-label-data text-green-700">+₹85,000.00</p>
+<div class="inline-flex items-center px-2 py-0.5 rounded-full bg-green-100 text-green-800 text-[10px] font-bold">CLEARED</div>
+</div>
+</div>
+<!-- Item 2: Expense (Red) -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md flex items-center justify-between active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">outbox</span>
+</div>
+<div>
+<div class="flex items-center gap-xs">
+<span class="text-label-caps font-label-caps text-on-surface-variant">EXP-4402</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">·</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">CASH EXPENSE</span>
+</div>
+<h3 class="text-title-md font-title-md text-on-surface truncate max-w-[180px]">Material Procurement</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">11:15 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-title-md font-label-data text-error">-₹12,450.00</p>
+<div class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">PENDING</div>
+</div>
+</div>
+<!-- Item 3: Journal Voucher -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md flex items-center justify-between active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<div class="flex items-center gap-xs">
+<span class="text-label-caps font-label-caps text-on-surface-variant">JV-901</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">·</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">JOURNAL VOUCHER</span>
+</div>
+<h3 class="text-title-md font-title-md text-on-surface truncate max-w-[180px]">Green Valley Estates</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">09:45 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-title-md font-label-data text-on-surface">₹45,000.00</p>
+<div class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold">ADJUSTMENT</div>
+</div>
+</div>
+</div>
+<!-- Yesterday Section -->
+<div class="flex items-center justify-between py-xs mt-lg mb-sm">
+<span class="text-label-caps font-label-caps text-on-surface-variant">YESTERDAY, OCT 23</span>
+</div>
+<div class="space-y-sm">
+<!-- Item 4: Expense -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md flex items-center justify-between active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">outbox</span>
+</div>
+<div>
+<div class="flex items-center gap-xs">
+<span class="text-label-caps font-label-caps text-on-surface-variant">EXP-4399</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">·</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">EXPENSE</span>
+</div>
+<h3 class="text-title-md font-title-md text-on-surface truncate max-w-[180px]">Vendor: ABC Steel</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">18:20 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-title-md font-label-data text-error">-₹3,20,000.00</p>
+<div class="inline-flex items-center px-2 py-0.5 rounded-full bg-green-100 text-green-800 text-[10px] font-bold">CLEARED</div>
+</div>
+</div>
+</div>
+<!-- End of list padding -->
+<div class="h-24"></div>
+</main>
+<!-- Filter Bottom Sheet Overlay -->
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 hidden transition-opacity duration-300" id="filterOverlay">
+<div class="absolute bottom-0 left-0 w-full bg-surface-container-lowest rounded-t-xl max-h-[795px] overflow-y-auto transform translate-y-full transition-transform duration-300 ease-out" id="filterSheet">
+<div class="sticky top-0 bg-surface-container-lowest px-lg pt-md pb-sm border-b border-outline-variant">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full mx-auto mb-md"></div>
+<div class="flex justify-between items-center">
+<h2 class="text-headline-md font-headline-md text-primary">Filter Transactions</h2>
+<button class="p-2 text-on-surface-variant" id="closeFilter">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="p-lg space-y-lg">
+<!-- Transaction Type Filter -->
+<div>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant mb-md">TRANSACTION TYPE</h3>
+<div class="grid grid-cols-2 gap-sm">
+<button class="px-md py-sm border-2 border-secondary bg-secondary-container/10 text-on-secondary-container font-semibold rounded-lg text-body-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            All Types
+                        </button>
+<button class="px-md py-sm border border-outline-variant hover:bg-surface-container-low text-on-surface-variant rounded-lg text-body-sm">Journal Vouchers</button>
+<button class="px-md py-sm border border-outline-variant hover:bg-surface-container-low text-on-surface-variant rounded-lg text-body-sm">Money Receipts</button>
+<button class="px-md py-sm border border-outline-variant hover:bg-surface-container-low text-on-surface-variant rounded-lg text-body-sm">Expenses</button>
+</div>
+</div>
+<!-- Date Range Filter -->
+<div>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant mb-md">DATE RANGE</h3>
+<div class="flex gap-sm">
+<div class="flex-1 space-y-xs">
+<label class="text-label-caps font-label-caps text-on-surface-variant opacity-70">FROM</label>
+<input class="w-full bg-surface-container-low border border-outline-variant px-md py-sm rounded-lg text-body-md focus:border-primary-container outline-none" type="date" value="2023-10-01"/>
+</div>
+<div class="flex-1 space-y-xs">
+<label class="text-label-caps font-label-caps text-on-surface-variant opacity-70">TO</label>
+<input class="w-full bg-surface-container-low border border-outline-variant px-md py-sm rounded-lg text-body-md focus:border-primary-container outline-none" type="date" value="2023-10-24"/>
+</div>
+</div>
+</div>
+<!-- Project Selection -->
+<div>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant mb-md">PROJECT</h3>
+<select class="w-full bg-surface-container-low border border-outline-variant px-md py-sm rounded-lg text-body-md focus:border-primary-container outline-none appearance-none">
+<option>All Projects</option>
+<option>Skyline Residency Ph. II</option>
+<option>Green Valley Estates</option>
+<option>Harbor View Apartments</option>
+</select>
+</div>
+</div>
+<!-- Filter Actions -->
+<div class="p-lg border-t border-outline-variant grid grid-cols-2 gap-md">
+<button class="w-full py-md text-on-surface-variant font-bold text-label-caps uppercase border border-outline-variant rounded-lg hover:bg-surface-container-low">Reset</button>
+<button class="w-full py-md bg-primary text-on-primary font-bold text-label-caps uppercase rounded-lg shadow-sm active:scale-95 transition-transform" id="applyFilter">Apply Filter</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Context: Financials Active) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-md pb-md pt-sm md:hidden bg-surface-container-highest border-t border-outline-variant shadow-lg z-40">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-caps font-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="text-label-caps font-label-caps">Financials</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="text-label-caps font-label-caps">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-caps font-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        const openFilter = document.getElementById('openFilter');
+        const closeFilter = document.getElementById('closeFilter');
+        const applyFilter = document.getElementById('applyFilter');
+        const filterOverlay = document.getElementById('filterOverlay');
+        const filterSheet = document.getElementById('filterSheet');
+
+        function toggleFilter(show) {
+            if (show) {
+                filterOverlay.classList.remove('hidden');
+                setTimeout(() => {
+                    filterSheet.classList.remove('translate-y-full');
+                }, 10);
+            } else {
+                filterSheet.classList.add('translate-y-full');
+                setTimeout(() => {
+                    filterOverlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        openFilter.addEventListener('click', () => toggleFilter(true));
+        closeFilter.addEventListener('click', () => toggleFilter(false));
+        applyFilter.addEventListener('click', () => toggleFilter(false));
+        
+        filterOverlay.addEventListener('click', (e) => {
+            if (e.target === filterOverlay) toggleFilter(false);
+        });
+
+        // Haptic feedback simulation for cards
+        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.add('scale-[0.98]');
+                setTimeout(() => card.classList.remove('scale-[0.98]'), 100);
+            });
+        });
+    </script>
+</body></html>

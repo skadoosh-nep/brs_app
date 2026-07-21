@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirmanFlow - Financial Management</title>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "inverse-surface": "#2d3133",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d8e3fb",
+                        "error-container": "#ffdad6",
+                        "secondary": "#855300",
+                        "outline-variant": "#c5c6cd",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "on-tertiary-container": "#888fa7",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-tint": "#545f73",
+                        "surface-bright": "#f7f9fb",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-primary-container": "#8590a6",
+                        "secondary-container": "#fea619",
+                        "primary": "#091426",
+                        "on-secondary-fixed": "#2a1700",
+                        "outline": "#75777d",
+                        "on-secondary-container": "#684000",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45474c",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-container-high": "#e6e8ea",
+                        "error": "#ba1a1a",
+                        "tertiary": "#0b1426",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-container": "#20283c",
+                        "primary-fixed-dim": "#bcc7de",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error": "#ffffff",
+                        "primary-container": "#1e293b",
+                        "tertiary-fixed-dim": "#bec6e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "container-max": "1440px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "label-data": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar-active-indicator {
+            box-shadow: inset 4px 0 0 0 #fea619;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c5c6cd; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-tertiary flex flex-col py-md border-r border-outline-variant z-50">
+<div class="px-lg mb-2xl">
+<h1 class="text-title-lg font-title-lg text-on-tertiary">NirmanFlow</h1>
+<p class="text-label-caps font-label-caps text-on-tertiary-container mt-xs">Management Suite</p>
+</div>
+<nav class="flex-1 space-y-xs overflow-y-auto px-sm custom-scrollbar">
+<!-- Dashboard Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-data text-label-data">Dashboard</span>
+</a>
+<!-- Financials Tab (Active Mapping) -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary-container border-l-4 border-secondary-container font-semibold bg-tertiary-container transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-data text-label-data">Financials</span>
+</a>
+<!-- Tenders Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="font-label-data text-label-data">Tenders</span>
+</a>
+<!-- Projects Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="construction">construction</span>
+<span class="font-label-data text-label-data">Projects</span>
+</a>
+<!-- Settings Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-tertiary-container hover:text-on-tertiary hover:bg-tertiary-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-data text-label-data">Settings</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-md border-t border-tertiary-container">
+<button class="w-full flex items-center justify-center gap-sm bg-secondary-container text-on-secondary-container font-bold py-md rounded-xl transition-all hover:opacity-90 active:scale-95">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="text-label-caps font-label-caps">Create New Project</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="h-16 flex justify-between items-center w-full px-lg py-sm bg-surface-container-lowest border-b border-outline-variant z-40">
+<div class="flex items-center gap-xl">
+<h2 class="text-headline-md font-headline-md text-primary">Financial Management</h2>
+<div class="flex items-center gap-lg">
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 text-label-caps font-label-caps active:scale-95 transition-transform" href="#">JV</a>
+<a class="text-on-surface-variant font-medium text-label-caps font-label-caps hover:text-primary transition-colors" href="#">Money Receipts</a>
+<a class="text-on-surface-variant font-medium text-label-caps font-label-caps hover:text-primary transition-colors" href="#">Trial Balance</a>
+<a class="text-on-surface-variant font-medium text-label-caps font-label-caps hover:text-primary transition-colors" href="#">P&amp;L</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative group">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer group-hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="apps">apps</span>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a business executive in a high-rise office environment. The lighting is sophisticated and directional, highlighting the contours of the subject's face. The background features a blurred cityscape through floor-to-ceiling glass, reinforcing a modern corporate aesthetic with cool blue and neutral grey tones. The mood is authoritative and confident, fitting for a finance module user profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjKxwMvxAcBNedTzUZjzqLJI0twfkmZg0asQ87ZDUlSybzIwVXK_SD4a-hJWeFncMu6UUraZjkEqMq0dOWQkE3Iy-BXFFOcdi7IRCPnBp3RDnxfjAb_3XovQC-Hxb7oK6xY8QNkWFB_QFb1pTR531g2_PIAmVVtWyfPmus1HRzZLJb-tv1qair2eUT5QbS8CeL4SFYgoAXeTx_L59g-kOZkOdjRclVGVT0kGlPKtL_tLDQlfrse6Yw1YuzN9AoHhcSCxgZGBGZ_z0"/>
+</div>
+</div>
+</header>
+<!-- Journal Voucher (JV) Interface Canvas -->
+<section class="flex-1 overflow-y-auto p-lg bg-background">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Entry Header Card -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm grid grid-cols-12 gap-lg items-end">
+<div class="col-span-12 md:col-span-3">
+<label class="block text-body-sm font-medium mb-xs text-on-surface-variant">Voucher Number</label>
+<div class="text-headline-md font-headline-md text-primary">JV-2023-0892</div>
+</div>
+<div class="col-span-12 md:col-span-3">
+<label class="block text-body-sm font-medium mb-xs text-on-surface-variant">Voucher Date</label>
+<input class="w-full h-10 px-md rounded border border-outline focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low text-body-md" type="date" value="2023-10-27"/>
+</div>
+<div class="col-span-12 md:col-span-6">
+<label class="block text-body-sm font-medium mb-xs text-on-surface-variant">Narration</label>
+<input class="w-full h-10 px-md rounded border border-outline focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low text-body-md" placeholder="Enter purpose of transaction..." type="text"/>
+</div>
+</div>
+<!-- Dynamic Line-Item Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="py-md px-lg text-label-caps font-label-caps text-on-surface-variant">Account Head</th>
+<th class="py-md px-lg text-label-caps font-label-caps text-on-surface-variant text-right w-48">Debit (₹)</th>
+<th class="py-md px-lg text-label-caps font-label-caps text-on-surface-variant text-right w-48">Credit (₹)</th>
+<th class="py-md px-md w-12"></th>
+</tr>
+</thead>
+<tbody id="jv-table-body">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant group hover:bg-surface-container-low transition-colors">
+<td class="p-md px-lg">
+<select class="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-primary">
+<option>Bank Account - HDFC 0492</option>
+<option>Petty Cash</option>
+<option>Construction Supplies Expense</option>
+<option>Vendor Payable - Steel King</option>
+</select>
+</td>
+<td class="p-md px-lg">
+<input class="w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data text-primary" oninput="updateTotals()" type="number" value="125000.00"/>
+</td>
+<td class="p-md px-lg">
+<input class="w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data text-on-surface-variant" oninput="updateTotals()" type="number" value="0.00"/>
+</td>
+<td class="p-md text-center">
+<button class="material-symbols-outlined text-outline-variant hover:text-error transition-colors text-[20px]" data-icon="delete">delete</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant group hover:bg-surface-container-low transition-colors">
+<td class="p-md px-lg">
+<select class="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-primary">
+<option>Vendor Payable - Steel King</option>
+<option>Bank Account - HDFC 0492</option>
+<option>Petty Cash</option>
+<option>Construction Supplies Expense</option>
+</select>
+</td>
+<td class="p-md px-lg">
+<input class="w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data text-on-surface-variant" oninput="updateTotals()" type="number" value="0.00"/>
+</td>
+<td class="p-md px-lg">
+<input class="w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data text-primary" oninput="updateTotals()" type="number" value="125000.00"/>
+</td>
+<td class="p-md text-center">
+<button class="material-symbols-outlined text-outline-variant hover:text-error transition-colors text-[20px]" data-icon="delete">delete</button>
+</td>
+</tr>
+</tbody>
+<tfoot class="bg-surface-container-high font-bold">
+<tr>
+<td class="py-lg px-lg">
+<button class="flex items-center gap-sm text-secondary hover:text-secondary-container transition-colors text-label-caps font-label-caps" onclick="addRow()">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+                                        Add New Item
+                                    </button>
+</td>
+<td class="py-lg px-lg text-right">
+<div class="text-label-caps font-label-caps text-on-surface-variant mb-xs">Total Debit</div>
+<div class="text-headline-md font-headline-md text-primary" id="total-debit">₹125,000.00</div>
+</td>
+<td class="py-lg px-lg text-right">
+<div class="text-label-caps font-label-caps text-on-surface-variant mb-xs">Total Credit</div>
+<div class="text-headline-md font-headline-md text-primary" id="total-credit">₹125,000.00</div>
+</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<!-- Footer Actions -->
+<div class="flex items-center justify-between pt-lg">
+<div class="flex items-center gap-sm bg-secondary-fixed text-on-secondary-fixed py-xs px-md rounded-full" id="status-chip">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-caps font-label-caps">Balanced</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="px-xl py-md rounded-lg border border-outline text-on-surface font-semibold hover:bg-surface-container-low transition-all">Cancel</button>
+<button class="px-xl py-md rounded-lg bg-primary text-on-primary font-bold shadow-md hover:shadow-lg active:scale-95 transition-all">Submit Journal Entry</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-md pb-md pt-sm md:hidden bg-surface-container-highest border-t border-outline-variant shadow-lg z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low p-2" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-caps font-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-label-caps font-label-caps">Financials</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low p-2" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="text-label-caps font-label-caps">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low p-2" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-caps font-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        function addRow() {
+            const tbody = document.getElementById('jv-table-body');
+            const newRow = document.createElement('tr');
+            newRow.className = "border-b border-outline-variant group hover:bg-surface-container-low transition-colors";
+            newRow.innerHTML = `
+                <td class="p-md px-lg">
+                    <select class="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-primary">
+                        <option>Select Account Head...</option>
+                        <option>Bank Account - HDFC 0492</option>
+                        <option>Petty Cash</option>
+                        <option>Construction Supplies Expense</option>
+                        <option>Vendor Payable - Steel King</option>
+                    </select>
+                </td>
+                <td class="p-md px-lg">
+                    <input type="number" value="0.00" class="w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data text-on-surface-variant" oninput="updateTotals()">
+                </td>
+                <td class="p-md px-lg">
+                    <input type="number" value="0.00" class="w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data text-on-surface-variant" oninput="updateTotals()">
+                </td>
+                <td class="p-md text-center">
+                    <button onclick="this.closest('tr').remove(); updateTotals();" class="material-symbols-outlined text-outline-variant hover:text-error transition-colors text-[20px]" data-icon="delete">delete</button>
+                </td>
+            `;
+            tbody.appendChild(newRow);
+        }
+
+        function updateTotals() {
+            let totalDebit = 0;
+            let totalCredit = 0;
+            const rows = document.querySelectorAll('#jv-table-body tr');
+            
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input[type="number"]');
+                const debitValue = parseFloat(inputs[0].value) || 0;
+                const creditValue = parseFloat(inputs[1].value) || 0;
+                
+                totalDebit += debitValue;
+                totalCredit += creditValue;
+
+                // Adjust text color based on value
+                inputs[0].className = `w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data ${debitValue > 0 ? 'text-primary' : 'text-on-surface-variant'}`;
+                inputs[1].className = `w-full text-right bg-transparent border-none focus:ring-0 font-label-data text-label-data ${creditValue > 0 ? 'text-primary' : 'text-on-surface-variant'}`;
+            });
+
+            document.getElementById('total-debit').innerText = '₹' + totalDebit.toLocaleString(undefined, {minimumFractionDigits: 2});
+            document.getElementById('total-credit').innerText = '₹' + totalCredit.toLocaleString(undefined, {minimumFractionDigits: 2});
+
+            const statusChip = document.getElementById('status-chip');
+            if (totalDebit === totalCredit && totalDebit > 0) {
+                statusChip.className = "flex items-center gap-sm bg-secondary-fixed text-on-secondary-fixed py-xs px-md rounded-full transition-all";
+                statusChip.innerHTML = `<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span><span class="text-label-caps font-label-caps">Balanced</span>`;
+            } else {
+                statusChip.className = "flex items-center gap-sm bg-error-container text-on-error-container py-xs px-md rounded-full transition-all";
+                statusChip.innerHTML = `<span class="material-symbols-outlined text-[16px]" data-icon="warning">warning</span><span class="text-label-caps font-label-caps">Unbalanced</span>`;
+            }
+        }
+
+        // Initialize Material Symbols on dynamically added elements
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('button')) {
+                // Micro-interaction click effect
+            }
+        });
+    </script>
+</body></html>

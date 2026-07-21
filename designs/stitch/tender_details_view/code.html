@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NirmanFlow | Tender Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "inverse-surface": "#2d3133",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d8e3fb",
+                        "error-container": "#ffdad6",
+                        "secondary": "#855300",
+                        "outline-variant": "#c5c6cd",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "on-tertiary-container": "#888fa7",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-tint": "#545f73",
+                        "surface-bright": "#f7f9fb",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-primary-container": "#8590a6",
+                        "secondary-container": "#fea619",
+                        "primary": "#091426",
+                        "on-secondary-fixed": "#2a1700",
+                        "outline": "#75777d",
+                        "on-secondary-container": "#684000",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45474c",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-container-high": "#e6e8ea",
+                        "error": "#ba1a1a",
+                        "tertiary": "#0b1426",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-container": "#20283c",
+                        "primary-fixed-dim": "#bcc7de",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error": "#ffffff",
+                        "primary-container": "#1e293b",
+                        "tertiary-fixed-dim": "#bec6e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "container-max": "1440px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "label-data": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .step-line::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: -24px;
+            width: 2px;
+            background-color: #e0e3e5;
+        }
+        .step-line:last-child::before {
+            display: none;
+        }
+        /* Mobile Specific Overrides */
+        @media (max-width: 768px) {
+            body { -webkit-tap-highlight-color: transparent; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- Header Section (One-handed reach optimized) -->
+<header class="bg-surface-container-lowest px-md pt-xl pb-lg border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-start justify-between mb-sm">
+<button aria-label="Go back" class="p-xs -ml-xs text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button aria-label="More options" class="p-xs text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="mt-md">
+<div class="flex items-center gap-xs mb-xs">
+<span class="px-sm py-xs bg-[#E7F5ED] text-[#107C41] font-label-caps text-label-caps rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Awarded
+                </span>
+<span class="text-on-surface-variant font-label-data text-label-data">T-45920-A</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">Skyway Expressway Phase II Extension</h1>
+<p class="text-on-surface-variant font-body-sm mt-xs">Public Works Department, Infrastructure Div.</p>
+</div>
+</header>
+<main class="p-md space-y-md">
+<!-- Quick Actions / Swipe Banner -->
+<div class="relative w-full h-40 rounded-xl overflow-hidden bg-primary shadow-sm group">
+<img class="w-full h-full object-cover opacity-60" data-alt="A cinematic, low-angle photograph of a massive highway construction project at twilight. The scene is dominated by structured steel rebar and heavy machinery, with soft industrial lighting casting warm glows against the cool slate blue evening sky. The style is professional and systematic, emphasizing architectural precision and large-scale engineering excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVMDh-9pHsbryLFTCq_BMjC3dBL5diARyQbyMyVVN2bk50nS-tVLiN6YigyAY6LdPgAWkGprVb8CxODMJONaufPqAyB4gWSxCab5560LDoYRplkrSrusgYrOJj1Gtjd2RCNu73FHCVlRsmJG-TmNoKWTR3lDy-z01EWLuo6A958njLGyImfbK9MCtfICeFXDInsSEQPCfbJ22hzhwJZ2aLX2jvj7EBk2PRg6iDJ7_oBMAmkkTrgFqPt33J7zGqqRPtkOM4PXPLvGk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent p-md flex flex-col justify-end">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-on-primary/70 font-label-caps text-label-caps uppercase">Project Location</p>
+<p class="text-on-primary font-title-md text-title-md">Eastern Corridor, Sector 45</p>
+</div>
+<button class="bg-secondary-container text-on-secondary-container p-sm rounded-full shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">map</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Metric Cards Grid (Bento Style) -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="col-span-2 bg-surface-container-lowest p-md border border-outline-variant rounded-xl flex items-center justify-between">
+<div>
+<p class="text-on-surface-variant font-label-caps text-label-caps">OUR PROPOSAL AMOUNT</p>
+<p class="text-primary font-headline-md text-headline-md mt-xs font-label-data">$12,450,000.00</p>
+</div>
+<div class="h-12 w-12 bg-primary-fixed rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">payments</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md border border-outline-variant rounded-xl">
+<p class="text-on-surface-variant font-label-caps text-label-caps">SECURITY DEPOSIT</p>
+<p class="text-primary font-title-lg text-title-lg mt-xs font-label-data">$250,000</p>
+<div class="mt-sm h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-full"></div>
+</div>
+<p class="text-on-surface-variant font-body-sm mt-xs">Fully Paid</p>
+</div>
+<div class="bg-surface-container-lowest p-md border border-outline-variant rounded-xl">
+<p class="text-on-surface-variant font-label-caps text-label-caps">CLOSING DATE</p>
+<p class="text-primary font-title-lg text-title-lg mt-xs font-label-data">Oct 24</p>
+<div class="mt-sm flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-body-sm">Expired</span>
+</div>
+</div>
+</div>
+<!-- Timeline / History Section -->
+<section class="bg-surface-container-lowest p-md border border-outline-variant rounded-xl">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-title-md text-title-md text-primary">Application Timeline</h2>
+<button class="text-primary font-label-caps text-label-caps uppercase tracking-wider">View Log</button>
+</div>
+<div class="space-y-lg">
+<!-- Step 4 -->
+<div class="relative flex gap-md step-line">
+<div class="z-10 bg-secondary-container text-on-secondary-container h-6 w-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<p class="font-title-md text-body-md text-primary leading-none">Contract Awarded</p>
+<p class="text-on-surface-variant font-body-sm mt-xs">Official letter of intent received and signed.</p>
+<p class="text-on-surface-variant font-label-data text-[11px] mt-xs">OCT 15, 2023 • 10:24 AM</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex gap-md step-line">
+<div class="z-10 bg-surface-container-highest text-on-surface-variant h-6 w-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+<div>
+<p class="font-title-md text-body-md text-primary leading-none">Technical Evaluation</p>
+<p class="text-on-surface-variant font-body-sm mt-xs">Score: 94/100. Qualified for financial round.</p>
+<p class="text-on-surface-variant font-label-data text-[11px] mt-xs">SEP 28, 2023 • 02:15 PM</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex gap-md step-line">
+<div class="z-10 bg-surface-container-highest text-on-surface-variant h-6 w-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">upload_file</span>
+</div>
+<div>
+<p class="font-title-md text-body-md text-primary leading-none">Bid Submission</p>
+<p class="text-on-surface-variant font-body-sm mt-xs">Documents and financial bid uploaded.</p>
+<p class="text-on-surface-variant font-label-data text-[11px] mt-xs">AUG 12, 2023 • 11:00 AM</p>
+</div>
+</div>
+<!-- Step 1 -->
+<div class="relative flex gap-md step-line">
+<div class="z-10 bg-surface-container-highest text-on-surface-variant h-6 w-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">search</span>
+</div>
+<div>
+<p class="font-title-md text-body-md text-primary leading-none">Tender Downloaded</p>
+<p class="text-on-surface-variant font-body-sm mt-xs">Project specifications and BOQ analyzed.</p>
+<p class="text-on-surface-variant font-label-data text-[11px] mt-xs">AUG 05, 2023 • 09:45 AM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Document List -->
+<section class="bg-surface-container-lowest p-md border border-outline-variant rounded-xl">
+<h2 class="font-title-md text-title-md text-primary mb-md">Associated Documents</h2>
+<div class="space-y-sm">
+<div class="flex items-center gap-md p-sm bg-surface-container-low rounded-lg border border-transparent active:border-outline transition-all">
+<div class="h-10 w-10 bg-tertiary-fixed rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-primary truncate">BOQ_Final_v2.xlsx</p>
+<p class="text-on-surface-variant font-body-sm">4.2 MB • Excel Spreadsheet</p>
+</div>
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">download</span></button>
+</div>
+<div class="flex items-center gap-md p-sm bg-surface-container-low rounded-lg border border-transparent active:border-outline transition-all">
+<div class="h-10 w-10 bg-tertiary-fixed rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-primary truncate">Technical_Proposal.pdf</p>
+<p class="text-on-surface-variant font-body-sm">12.8 MB • PDF Document</p>
+</div>
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">download</span></button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell (Persistent) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-md pb-md pt-sm md:hidden bg-surface-container-highest border-t border-outline-variant shadow-lg z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low p-xs rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low p-xs rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Financials</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Tenders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low p-xs rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for one-handed use buttons
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('touchstart', () => {
+                el.style.opacity = '0.7';
+            });
+            el.addEventListener('touchend', () => {
+                el.style.opacity = '1';
+            });
+        });
+
+        // Sticky Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+                header.classList.remove('border-b');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('border-b');
+            }
+        });
+    </script>
+</body></html>

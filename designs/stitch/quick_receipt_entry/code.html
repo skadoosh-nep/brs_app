@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #091426 !important;
+            box-shadow: 0 0 0 1px #091426;
+        }
+        .active-tab-indicator {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "inverse-surface": "#2d3133",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d8e3fb",
+                        "error-container": "#ffdad6",
+                        "secondary": "#855300",
+                        "outline-variant": "#c5c6cd",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "on-tertiary-container": "#888fa7",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-tint": "#545f73",
+                        "surface-bright": "#f7f9fb",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-primary-container": "#8590a6",
+                        "secondary-container": "#fea619",
+                        "primary": "#091426",
+                        "on-secondary-fixed": "#2a1700",
+                        "outline": "#75777d",
+                        "on-secondary-container": "#684000",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45474c",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-container-high": "#e6e8ea",
+                        "error": "#ba1a1a",
+                        "tertiary": "#0b1426",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-container": "#20283c",
+                        "primary-fixed-dim": "#bcc7de",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error": "#ffffff",
+                        "primary-container": "#1e293b",
+                        "tertiary-fixed-dim": "#bec6e0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "container-max": "1440px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "label-data": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- Top Navigation Bar (Mobile View) -->
+<header class="bg-surface-container-lowest flex justify-between items-center px-md py-sm border-b border-outline-variant fixed top-0 w-full z-40">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+<h1 class="text-title-md font-title-md text-primary">New Expense</h1>
+</div>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">help_outline</span>
+</div>
+</header>
+<main class="flex-grow pt-[72px] pb-32 px-md">
+<div class="max-w-md mx-auto space-y-lg">
+<!-- Expense Form Container -->
+<form class="space-y-xl">
+<!-- Amount Entry (Display/High Visibility) -->
+<div class="space-y-xs text-center py-md bg-surface-container-low rounded-xl border border-outline-variant">
+<label class="text-label-caps font-label-caps text-on-surface-variant">TOTAL AMOUNT</label>
+<div class="flex items-center justify-center gap-xs">
+<span class="text-headline-md font-headline-md text-on-surface-variant">$</span>
+<input class="bg-transparent border-none text-center font-display-lg text-display-lg text-primary w-full max-w-[200px] focus:ring-0 appearance-none" placeholder="0.00" required="" step="0.01" type="number"/>
+</div>
+</div>
+<!-- Form Fields -->
+<div class="space-y-lg">
+<!-- Project Selection -->
+<div class="space-y-xs">
+<label class="text-body-sm font-body-sm font-medium text-on-surface-variant">Project</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-md px-md text-body-md font-body-md appearance-none">
+<option disabled="" selected="" value="">Select active project</option>
+<option value="102">Project Skyline - Phase 2</option>
+<option value="105">Terminal Expansion JV</option>
+<option value="110">Highway Maintenance #402</option>
+<option value="112">Downtown Commercial Plaza</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Date Picker -->
+<div class="space-y-xs">
+<label class="text-body-sm font-body-sm font-medium text-on-surface-variant">Transaction Date</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-md px-md text-body-md font-body-md" type="date" value="2024-05-20"/>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">calendar_today</span>
+</div>
+</div>
+<!-- Receipt Upload Area -->
+<div class="space-y-xs">
+<label class="text-body-sm font-body-sm font-medium text-on-surface-variant">Invoice / Receipt Photo</label>
+<button class="w-full h-40 border-2 border-dashed border-outline-variant bg-surface-container-low rounded-xl flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform overflow-hidden relative group" type="button">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-multiply group-hover:opacity-20 transition-opacity" data-alt="A professional close-up shot of a crumpled financial receipt resting on a dark slate architect's desk. The lighting is focused and dramatic, highlighting the texture of the thermal paper and the precise printed numbers. The background shows blurred drafting tools and blueprints, reinforcing a corporate construction management setting with a palette of deep blues and industrial grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD47f3vWpue_66UTHwlvtrS7d62CK7-S516tgvhw8oluiIbpzMuIWKoiBr833EHqJdhOGz6Yxt5aeondTR1wOB5kzqC-e-xQV9y7fuHdIUg_P2jsA1MPVHrmhaf2FPrrJZoz5P95nVCAz4GJbqKvEtf0O1MydKZ6UJc1mAB_QpwwaP6B7HCBCOGCOfG0tR_KCjQEBJ8KDZXWERgdKgRGq74ol56qqeMxKbTHg4bJNhgSlhP9CY1nafA8CjxfeRXEjT2HQFgrv0v4Mo"/>
+<div class="z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-[40px]">add_a_photo</span>
+<span class="text-body-md font-body-md text-primary font-semibold">Capture or Upload Photo</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Max size 10MB (JPG, PNG)</span>
+</div>
+</button>
+</div>
+<!-- Additional Notes (Optional but useful) -->
+<div class="space-y-xs">
+<label class="text-body-sm font-body-sm font-medium text-on-surface-variant">Description (Optional)</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-md px-md text-body-md font-body-md resize-none" placeholder="e.g. Concrete mix for Zone B footing" rows="2"></textarea>
+</div>
+</div>
+</form>
+</div>
+</main>
+<!-- Bottom Action & Navigation Shell -->
+<div class="fixed bottom-0 left-0 w-full z-50">
+<!-- Primary Action Button -->
+<div class="px-md pb-xl pt-sm bg-gradient-to-t from-background via-background/90 to-transparent">
+<button class="w-full bg-primary text-on-primary py-lg rounded-xl font-title-md text-title-md flex items-center justify-center gap-sm shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined">check_circle</span>
+                Submit Expense
+            </button>
+</div>
+<!-- Bottom Navigation (Shared Component Logic) -->
+<nav class="bg-surface-container-highest flex justify-around items-center px-md pb-md pt-sm border-t border-outline-variant md:hidden">
+<!-- Home -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-caps font-label-caps">Home</span>
+</div>
+<!-- Financials (Active) -->
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all">
+<span class="material-symbols-outlined active-tab-indicator" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="text-label-caps font-label-caps">Financials</span>
+</div>
+<!-- Projects -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-label-caps font-label-caps">Projects</span>
+</div>
+<!-- Profile -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-caps font-label-caps">Profile</span>
+</div>
+</nav>
+</div>
+<script>
+        // Simple Interaction: Currency Formatter for Amount Input
+        const amountInput = document.querySelector('input[type="number"]');
+        amountInput.addEventListener('blur', (e) => {
+            if (e.target.value) {
+                const val = parseFloat(e.target.value);
+                e.target.value = val.toFixed(2);
+            }
+        });
+
+        // Micro-interaction for Receipt Upload
+        const uploadBtn = document.querySelector('button[type="button"]');
+        uploadBtn.addEventListener('click', () => {
+            // Visual feedback for interaction
+            uploadBtn.classList.add('border-primary');
+            setTimeout(() => {
+                uploadBtn.classList.remove('border-primary');
+            }, 300);
+        });
+    </script>
+</body></html>

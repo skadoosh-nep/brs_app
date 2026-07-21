@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>NirmanFlow | Money Receipts Ledger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        /* Custom scrollbar for high density lists */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "on-background": "#191c1e",
+                        "primary-fixed": "#d8e3fb",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-container": "#fea619",
+                        "surface-container-high": "#e6e8ea",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#45474c",
+                        "tertiary-container": "#20283c",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed": "#111c2d",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed": "#ffddb8",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "on-primary-container": "#8590a6",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#091426",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-variant": "#e0e3e5",
+                        "surface-tint": "#545f73",
+                        "secondary": "#855300",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "primary-container": "#1e293b",
+                        "primary-fixed-dim": "#bcc7de",
+                        "outline-variant": "#c5c6cd",
+                        "tertiary": "#0b1426",
+                        "on-secondary-container": "#684000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#888fa7",
+                        "on-error-container": "#93000a",
+                        "outline": "#75777d",
+                        "tertiary-fixed": "#dae2fd",
+                        "surface-container": "#eceef0",
+                        "background": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "2xl": "48px",
+                        "sidebar-width": "260px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-data": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden antialiased">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex justify-between items-center px-md h-16 w-full">
+<div class="flex items-center gap-md">
+<button class="transition-colors duration-200 active:opacity-70 p-1 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">NirmanFlow</h1>
+</div>
+<div class="flex items-center">
+<button class="transition-colors duration-200 active:opacity-70 p-1 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-md max-w-lg mx-auto min-h-screen">
+<!-- Summary Card -->
+<section class="mb-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg relative overflow-hidden shadow-sm">
+<div class="flex flex-col gap-xs mb-md">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Total Received (MTD)</span>
+<div class="flex items-baseline gap-sm">
+<span class="font-display-lg text-headline-lg-mobile text-primary">$42,850.00</span>
+<div class="flex items-center text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-xs ml-0.5">+12.4%</span>
+</div>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="flex-1 flex flex-col">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Target</span>
+<span class="font-title-md text-title-md text-on-surface">$50,000.00</span>
+</div>
+<div class="flex-1 flex flex-col border-l border-outline-variant pl-md">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Remaining</span>
+<span class="font-title-md text-title-md text-on-surface">$7,150.00</span>
+</div>
+</div>
+<!-- Subtle progress indicator at the bottom -->
+<div class="absolute bottom-0 left-0 h-1 bg-secondary-container" style="width: 85.7%"></div>
+</div>
+</section>
+<!-- Search & Filter Controls -->
+<section class="mb-md flex flex-col gap-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg py-2 pl-10 pr-4 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md transition-all" placeholder="Search by Receipt # or Project" type="text"/>
+</div>
+<div class="flex gap-sm overflow-x-auto no-scrollbar pb-1">
+<button class="bg-primary text-on-primary px-md py-1.5 rounded-full text-xs font-bold flex items-center gap-xs whitespace-nowrap">
+                    All Receipts
+                </button>
+<button class="bg-surface-container-high text-on-surface-variant border border-outline-variant px-md py-1.5 rounded-full text-xs font-bold flex items-center gap-xs whitespace-nowrap">
+                    Bank
+                </button>
+<button class="bg-surface-container-high text-on-surface-variant border border-outline-variant px-md py-1.5 rounded-full text-xs font-bold flex items-center gap-xs whitespace-nowrap">
+                    Cash
+                </button>
+<button class="bg-surface-container-high text-on-surface-variant border border-outline-variant px-md py-1.5 rounded-full text-xs font-bold flex items-center gap-xs whitespace-nowrap">
+                    Cheque
+                </button>
+<button class="bg-surface-container-high text-on-surface-variant border border-outline-variant px-md py-1.5 rounded-full text-xs font-bold flex items-center gap-xs whitespace-nowrap">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+                    Filter
+                </button>
+</div>
+</section>
+<!-- Receipts List -->
+<section class="space-y-sm">
+<!-- Receipt Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface-variant">#MR-2023-0941</span>
+<span class="font-body-sm text-body-sm text-outline">Oct 24, 2023</span>
+</div>
+<div class="bg-secondary-container/10 px-2 py-0.5 rounded-lg border border-secondary-container/20">
+<span class="text-[10px] font-bold text-on-secondary-container tracking-wider uppercase">Bank</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-primary truncate max-w-[160px]">Metropolis Heights II</span>
+<span class="text-[10px] text-outline uppercase font-semibold">Project</span>
+</div>
+<span class="font-headline-md text-title-lg text-primary">$12,400.00</span>
+</div>
+</div>
+<!-- Receipt Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface-variant">#MR-2023-0940</span>
+<span class="font-body-sm text-body-sm text-outline">Oct 22, 2023</span>
+</div>
+<div class="bg-primary-container/10 px-2 py-0.5 rounded-lg border border-primary-container/20">
+<span class="text-[10px] font-bold text-on-primary-container tracking-wider uppercase">Cash</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-primary truncate max-w-[160px]">Riverside Plaza</span>
+<span class="text-[10px] text-outline uppercase font-semibold">Project</span>
+</div>
+<span class="font-headline-md text-title-lg text-primary">$3,200.00</span>
+</div>
+</div>
+<!-- Receipt Item 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface-variant">#MR-2023-0938</span>
+<span class="font-body-sm text-body-sm text-outline">Oct 21, 2023</span>
+</div>
+<div class="bg-surface-container-highest px-2 py-0.5 rounded-lg border border-outline-variant">
+<span class="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Cheque</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-primary truncate max-w-[160px]">Skyline Office Park</span>
+<span class="text-[10px] text-outline uppercase font-semibold">Project</span>
+</div>
+<span class="font-headline-md text-title-lg text-primary">$21,750.00</span>
+</div>
+</div>
+<!-- Receipt Item 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface-variant">#MR-2023-0935</span>
+<span class="font-body-sm text-body-sm text-outline">Oct 19, 2023</span>
+</div>
+<div class="bg-secondary-container/10 px-2 py-0.5 rounded-lg border border-secondary-container/20">
+<span class="text-[10px] font-bold text-on-secondary-container tracking-wider uppercase">Bank</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-primary truncate max-w-[160px]">Metropolis Heights II</span>
+<span class="text-[10px] text-outline uppercase font-semibold">Project</span>
+</div>
+<span class="font-headline-md text-title-lg text-primary">$5,500.00</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed right-md bottom-24 bg-primary text-on-primary w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform active:scale-90 z-40">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface dark:bg-surface-dim border-t border-outline-variant dark:border-outline flex justify-around items-center h-16 w-full px-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-caps text-[10px] mt-1">Financials</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-label-caps text-[10px] mt-1">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the FAB
+        const fab = document.querySelector('.fixed.right-md');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                fab.classList.add('scale-100');
+            } else {
+                fab.classList.remove('scale-100');
+            }
+        });
+
+        // Filter chip selection toggle
+        const filterButtons = document.querySelectorAll('.overflow-x-auto button');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary');
+                    b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary');
+                btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

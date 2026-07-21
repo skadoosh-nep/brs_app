@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>NirmanFlow - Trial Balance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .collapsible-active .collapsible-content {
+            max-height: 1000px;
+        }
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .collapsible-active .rotate-icon {
+            transform: rotate(180deg);
+        }
+        body {
+            background-color: #f7f9fb;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "on-background": "#191c1e",
+                        "primary-fixed": "#d8e3fb",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-container": "#fea619",
+                        "surface-container-high": "#e6e8ea",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#45474c",
+                        "tertiary-container": "#20283c",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed": "#111c2d",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed": "#ffddb8",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "on-primary-container": "#8590a6",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#091426",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-variant": "#e0e3e5",
+                        "surface-tint": "#545f73",
+                        "secondary": "#855300",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "primary-container": "#1e293b",
+                        "primary-fixed-dim": "#bcc7de",
+                        "outline-variant": "#c5c6cd",
+                        "tertiary": "#0b1426",
+                        "on-secondary-container": "#684000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#888fa7",
+                        "on-error-container": "#93000a",
+                        "outline": "#75777d",
+                        "tertiary-fixed": "#dae2fd",
+                        "surface-container": "#eceef0",
+                        "background": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "2xl": "48px",
+                        "sidebar-width": "260px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-data": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-data": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline fixed top-0 w-full z-50 flex justify-between items-center px-md h-16 w-full">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">NirmanFlow</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">notifications</span>
+</div>
+</header>
+<main class="pt-20 pb-24 px-md max-w-lg mx-auto">
+<!-- View Filter -->
+<div class="flex bg-surface-container rounded-lg p-1 mb-lg border border-outline-variant">
+<button class="flex-1 py-1.5 font-label-caps text-label-caps text-on-surface bg-surface-container-lowest shadow-sm rounded border border-outline-variant transition-all">YEARLY</button>
+<button class="flex-1 py-1.5 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high transition-all">QUARTERLY</button>
+<button class="flex-1 py-1.5 font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-container-high transition-all">MONTHLY</button>
+</div>
+<!-- Summary Card -->
+<div class="bg-primary text-on-primary rounded-xl p-lg mb-xl shadow-lg relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]">account_balance</span>
+</div>
+<div class="grid grid-cols-2 gap-lg relative z-10">
+<div>
+<p class="font-label-caps text-label-caps opacity-80 mb-base">TOTAL ASSETS</p>
+<p class="font-headline-md text-headline-md-mobile mb-xs">₹84.2M</p>
+<div class="flex items-center gap-xs text-[#4ade80]">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-body-sm text-body-sm">+4.2%</span>
+</div>
+</div>
+<div class="border-l border-white/10 pl-lg">
+<p class="font-label-caps text-label-caps opacity-80 mb-base">TOTAL LIABILITIES</p>
+<p class="font-headline-md text-headline-md-mobile mb-xs">₹32.8M</p>
+<div class="flex items-center gap-xs text-[#f87171]">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-body-sm text-body-sm">+1.8%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Hierarchical List -->
+<div class="space-y-md">
+<!-- Assets Section -->
+<div class="collapsible bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm" id="assets-section">
+<button class="w-full px-lg py-md flex items-center justify-between hover:bg-surface-container transition-colors" onclick="toggleSection('assets-section')">
+<div class="flex items-center gap-md">
+<div class="w-1.5 h-6 bg-secondary rounded-full"></div>
+<div class="text-left">
+<h3 class="font-title-md text-title-md text-primary">Assets</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">12 Accounts</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-label-data text-label-data text-primary">₹84,204,500</span>
+<span class="material-symbols-outlined rotate-icon text-on-surface-variant">expand_more</span>
+</div>
+</button>
+<div class="collapsible-content bg-surface">
+<div class="px-lg pb-md divide-y divide-outline-variant">
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Cash and Equivalents</span>
+<span class="font-label-data text-label-data text-primary">₹12,450,000</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Accounts Receivable</span>
+<span class="font-label-data text-label-data text-primary">₹45,210,000</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Inventory (Material)</span>
+<span class="font-label-data text-label-data text-primary">₹26,544,500</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Liabilities Section -->
+<div class="collapsible bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm" id="liabilities-section">
+<button class="w-full px-lg py-md flex items-center justify-between hover:bg-surface-container transition-colors" onclick="toggleSection('liabilities-section')">
+<div class="flex items-center gap-md">
+<div class="w-1.5 h-6 bg-error rounded-full"></div>
+<div class="text-left">
+<h3 class="font-title-md text-title-md text-primary">Liabilities</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">8 Accounts</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-label-data text-label-data text-primary">₹32,840,000</span>
+<span class="material-symbols-outlined rotate-icon text-on-surface-variant">expand_more</span>
+</div>
+</button>
+<div class="collapsible-content bg-surface">
+<div class="px-lg pb-md divide-y divide-outline-variant">
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Accounts Payable</span>
+<span class="font-label-data text-label-data text-primary">₹18,200,000</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Short-term Loans</span>
+<span class="font-label-data text-label-data text-primary">₹10,500,000</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Tax Obligations</span>
+<span class="font-label-data text-label-data text-primary">₹4,140,000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Equity Section -->
+<div class="collapsible bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm" id="equity-section">
+<button class="w-full px-lg py-md flex items-center justify-between hover:bg-surface-container transition-colors" onclick="toggleSection('equity-section')">
+<div class="flex items-center gap-md">
+<div class="w-1.5 h-6 bg-primary-container rounded-full"></div>
+<div class="text-left">
+<h3 class="font-title-md text-title-md text-primary">Equity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4 Accounts</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-label-data text-label-data text-primary">₹51,364,500</span>
+<span class="material-symbols-outlined rotate-icon text-on-surface-variant">expand_more</span>
+</div>
+</button>
+<div class="collapsible-content bg-surface">
+<div class="px-lg pb-md divide-y divide-outline-variant">
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Share Capital</span>
+<span class="font-label-data text-label-data text-primary">₹40,000,000</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Retained Earnings</span>
+<span class="font-label-data text-label-data text-primary">₹11,364,500</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Revenue Section -->
+<div class="collapsible bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm" id="revenue-section">
+<button class="w-full px-lg py-md flex items-center justify-between hover:bg-surface-container transition-colors" onclick="toggleSection('revenue-section')">
+<div class="flex items-center gap-md">
+<div class="w-1.5 h-6 bg-secondary-container rounded-full"></div>
+<div class="text-left">
+<h3 class="font-title-md text-title-md text-primary">Revenue</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">6 Accounts</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-label-data text-label-data text-primary">₹112,450,000</span>
+<span class="material-symbols-outlined rotate-icon text-on-surface-variant">expand_more</span>
+</div>
+</button>
+<div class="collapsible-content bg-surface">
+<div class="px-lg pb-md divide-y divide-outline-variant">
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Project Milestone A</span>
+<span class="font-label-data text-label-data text-primary">₹65,000,000</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Consultancy Fees</span>
+<span class="font-label-data text-label-data text-primary">₹47,450,000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Expenses Section -->
+<div class="collapsible bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm" id="expenses-section">
+<button class="w-full px-lg py-md flex items-center justify-between hover:bg-surface-container transition-colors" onclick="toggleSection('expenses-section')">
+<div class="flex items-center gap-md">
+<div class="w-1.5 h-6 bg-outline rounded-full"></div>
+<div class="text-left">
+<h3 class="font-title-md text-title-md text-primary">Expenses</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">24 Accounts</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-label-data text-label-data text-primary">₹61,085,500</span>
+<span class="material-symbols-outlined rotate-icon text-on-surface-variant">expand_more</span>
+</div>
+</button>
+<div class="collapsible-content bg-surface">
+<div class="px-lg pb-md divide-y divide-outline-variant">
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Labor Costs</span>
+<span class="font-label-data text-label-data text-primary">₹32,400,000</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Material Procurement</span>
+<span class="font-label-data text-label-data text-primary">₹21,185,500</span>
+</div>
+<div class="py-md flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Admin &amp; Logistics</span>
+<span class="font-label-data text-label-data text-primary">₹7,500,000</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Grand Total Footer Summary -->
+<div class="mt-xl p-lg bg-surface-container-high rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TOTAL DEBITS</span>
+<span class="font-label-data text-label-data text-primary">₹145,290,000</span>
+</div>
+<div class="flex justify-between items-center pt-sm border-t border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TOTAL CREDITS</span>
+<span class="font-label-data text-label-data text-primary">₹145,290,000</span>
+</div>
+<div class="mt-md flex justify-center">
+<span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                    BALANCED
+                </span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="bg-surface dark:bg-surface-dim border-t border-outline-variant dark:border-outline fixed bottom-0 w-full z-50 pb-safe flex justify-around items-center h-16 px-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-caps text-label-caps">Financials</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-label-caps text-label-caps">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        function toggleSection(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('collapsible-active');
+            
+            // Interaction feedback
+            const btn = el.querySelector('button');
+            btn.classList.add('bg-surface-container-high');
+            setTimeout(() => {
+                btn.classList.remove('bg-surface-container-high');
+            }, 150);
+        }
+
+        // Initialize with Assets expanded
+        window.onload = () => {
+            toggleSection('assets-section');
+        };
+    </script>
+</body></html>
