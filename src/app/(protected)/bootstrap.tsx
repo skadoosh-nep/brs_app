@@ -49,7 +49,7 @@ export default function BootstrapScreen() {
         return;
       }
 
-      router.replace("/(protected)/home");
+      router.replace("/(protected)/(tabs)");
     } catch (e) {
       setError(
         e instanceof Error

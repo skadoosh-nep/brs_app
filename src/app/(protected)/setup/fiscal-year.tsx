@@ -27,7 +27,7 @@ export default function SetupFiscalYearScreen() {
               is_active: true,
             });
 
-            router.replace("/(protected)/home");
+            router.replace("/(protected)/(tabs)");
           }}
         />
       </Card>
