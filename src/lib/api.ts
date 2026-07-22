@@ -7,6 +7,7 @@ import {
   type InternalAxiosRequestConfig,
 } from "axios";
 import { useAuthStore } from "@/store/auth";
+import { useToastStore } from "@/store/toast";
 import { ApiError, type FieldErrors } from "@/types/domain";
 import { sessionAdapter } from "./adapters";
 
@@ -144,6 +145,12 @@ function normalizeAxiosError(error: unknown): ApiError {
   );
 }
 
+function rejectWithToast(error: unknown): Promise<never> {
+  const normalized = normalizeAxiosError(error);
+  useToastStore.getState().showError(normalized.message);
+  return Promise.reject(normalized);
+}
+
 async function refreshSession(): Promise<boolean> {
   if (refreshPromise) return refreshPromise;
 
@@ -184,7 +191,7 @@ apiClient.interceptors.response.use(
       if (await refreshSession()) return apiClient.request(request);
       useAuthStore.getState().clearSession();
     }
-    return Promise.reject(normalizeAxiosError(error));
+    return rejectWithToast(error);
   },
 );
 

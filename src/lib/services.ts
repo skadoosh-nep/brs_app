@@ -2,6 +2,9 @@ import {
   companyAdapter,
   fiscalYearAdapter,
   fiscalYearsAdapter,
+  projectAdapter,
+  projectsAdapter,
+  projectStatusesAdapter,
   sessionAdapter,
 } from "./adapters";
 import { apiRequest } from "./api";
@@ -26,9 +29,23 @@ export type FiscalYearUpdate = Partial<
   Pick<FiscalYearInput, "name" | "start_date" | "end_date">
 >;
 
+export type ProjectInput = {
+  company_id: string;
+  project_status_id: string;
+  project_code: string;
+  name: string;
+  client_id: null;
+  location: string | null;
+  contract_amount: string;
+  start_date: string | null;
+  end_date: string | null;
+  description: string | null;
+};
+
+export type ProjectUpdate = Omit<Partial<ProjectInput>, "company_id" | "client_id">;
+
 export const authService = {
   async login(email: string, password: string) {
-    console.log("login called with email:", email, "password:", password);
     const response = await apiRequest(
       "/auth/login",
       {
@@ -157,5 +174,49 @@ export const fiscalYearService = {
     );
 
     return fiscalYearAdapter(response);
+  },
+};
+
+export const projectStatusService = {
+  async listActive() {
+    const response = await apiRequest("/masters/project-statuses", {
+      params: { is_active: true },
+    });
+    return projectStatusesAdapter(response);
+  },
+};
+
+export const projectService = {
+  async list(
+    options: { page?: number; pageSize?: number; projectStatusId?: string } = {},
+  ) {
+    const page = options.page ?? 1;
+    const pageSize = options.pageSize ?? 20;
+    const response = await apiRequest("/projects", {
+      params: {
+        page,
+        page_size: pageSize,
+        ...(options.projectStatusId
+          ? { project_status_id: options.projectStatusId }
+          : {}),
+      },
+    });
+    return projectsAdapter(response, page, pageSize);
+  },
+
+  async get(id: string) {
+    return projectAdapter(await apiRequest(`/projects/${id}`));
+  },
+
+  async create(input: ProjectInput) {
+    return projectAdapter(await apiRequest("/projects", { method: "POST", data: input }));
+  },
+
+  async update(id: string, input: ProjectUpdate) {
+    return projectAdapter(await apiRequest(`/projects/${id}`, { method: "PATCH", data: input }));
+  },
+
+  async remove(id: string) {
+    await apiRequest(`/projects/${id}`, { method: "DELETE" });
   },
 };
