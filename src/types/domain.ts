@@ -18,6 +18,26 @@ export type FiscalYear = {
   isActive: boolean;
 };
 
+export type Project = {
+  id: string;
+  companyId: string;
+  projectStatusId: string;
+  projectCode: string;
+  name: string;
+  clientId: string | null;
+  location: string | null;
+  contractAmount: string;
+  startDate: string | null;
+  endDate: string | null;
+  description: string | null;
+};
+
+export type ProjectStatus = {
+  id: string;
+  name: string;
+  isActive?: boolean;
+};
+
 export type Page<T> = {
   items: T[];
   total?: number;

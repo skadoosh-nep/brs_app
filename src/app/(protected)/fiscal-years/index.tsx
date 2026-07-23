@@ -125,7 +125,7 @@ export default function FiscalYearsScreen() {
           variant="secondary"
           title="Back to home"
           onPress={() =>
-            router.replace("/(protected)/home")
+            router.replace("/(protected)/(tabs)")
           }
         />
       </View>
