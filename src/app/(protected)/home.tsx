@@ -143,9 +143,10 @@ export default function HomeScreen() {
       </Pressable>
 
       <Text className="mb-3 text-base font-semibold text-primary">Quick actions</Text>
-      <View className="mb-7 flex-row gap-3">
+      <View className="mb-7 flex-row flex-wrap gap-3">
         <QuickAction symbol="▣" label="Projects" onPress={() => router.push("/(protected)/(tabs)/projects")} />
         <QuickAction symbol="◎" label="Parties" onPress={() => router.push("/(protected)/(tabs)/parties")} />
+        <QuickAction symbol="▤" label="Ledgers" onPress={() => router.push("/(protected)/(tabs)/ledgers")} />
         <QuickAction symbol="⌂" label="Company" onPress={() => router.push("/(protected)/company")} />
       </View>
 
@@ -214,7 +215,7 @@ function QuickAction({
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
-      className="min-h-28 flex-1 items-center justify-center rounded-xl border border-line border-l-4 border-l-accent bg-white px-2 py-4"
+      className="min-h-28 w-[48%] items-center justify-center rounded-xl border border-line border-l-4 border-l-accent bg-white px-2 py-4"
     >
       <View className="mb-3 h-10 w-10 items-center justify-center rounded-full bg-amber-100">
         <Text className="text-xl font-bold text-primary">{symbol}</Text>
