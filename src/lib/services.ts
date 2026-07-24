@@ -1,7 +1,13 @@
 import {
+  accountGroupAdapter,
+  accountGroupsAdapter,
+  accountGroupTreeAdapter,
+  accountGroupTypesAdapter,
   companyAdapter,
   fiscalYearAdapter,
   fiscalYearsAdapter,
+  ledgerAdapter,
+  ledgersAdapter,
   partiesAdapter,
   partyAdapter,
   partyTypesAdapter,
@@ -60,6 +66,30 @@ export type PartyInput = {
 export type PartyUpdate = Omit<Partial<PartyInput>, "company_id"> & {
   is_active?: boolean;
 };
+
+export type AccountGroupInput = {
+  company_id: string;
+  account_group_type_id: string;
+  parent_group_id: string | null;
+  name: string;
+  is_active: boolean;
+};
+
+export type AccountGroupUpdate = Omit<Partial<AccountGroupInput>, "company_id">;
+
+export type LedgerInput = {
+  company_id: string;
+  account_group_id: string;
+  party_id: string | null;
+  name: string;
+  opening_balance: string;
+  opening_balance_type: string | null;
+  is_cash_bank: boolean;
+  allow_project_tracking: boolean;
+  is_active: boolean;
+};
+
+export type LedgerUpdate = Omit<Partial<LedgerInput>, "company_id">;
 
 export const authService = {
   async login(email: string, password: string) {
@@ -276,5 +306,104 @@ export const partyService = {
   },
   async remove(id: string) {
     await apiRequest(`/parties/${id}`, { method: "DELETE" });
+  },
+};
+
+export const accountGroupTypeService = {
+  async list(isActive?: boolean) {
+    return accountGroupTypesAdapter(await apiRequest("/masters/account-group-types", {
+      params: isActive === undefined ? {} : { is_active: isActive },
+    }));
+  },
+};
+
+export const accountGroupService = {
+  async list(options: {
+    page?: number;
+    pageSize?: number;
+    companyId: string;
+    accountGroupTypeId?: string;
+    isActive?: boolean;
+  }) {
+    const page = options.page ?? 1;
+    const pageSize = options.pageSize ?? 20;
+    const response = await apiRequest("/account-groups", {
+      params: {
+        page,
+        page_size: pageSize,
+        company_id: options.companyId,
+        ...(options.accountGroupTypeId
+          ? { account_group_type_id: options.accountGroupTypeId }
+          : {}),
+        ...(options.isActive === undefined ? {} : { is_active: options.isActive }),
+      },
+    });
+    return accountGroupsAdapter(response, page, pageSize);
+  },
+  async tree(companyId: string) {
+    return accountGroupTreeAdapter(await apiRequest("/account-groups/tree", {
+      params: { company_id: companyId },
+    }));
+  },
+  async generateDefaultTree(companyId: string) {
+    await apiRequest("/account-groups/generate-default-tree", {
+      method: "POST",
+      params: { company_id: companyId },
+    });
+  },
+  async get(id: string) {
+    return accountGroupAdapter(await apiRequest(`/account-groups/${id}`));
+  },
+  async create(input: AccountGroupInput) {
+    return accountGroupAdapter(
+      await apiRequest("/account-groups", { method: "POST", data: input }),
+    );
+  },
+  async update(id: string, input: AccountGroupUpdate) {
+    return accountGroupAdapter(
+      await apiRequest(`/account-groups/${id}`, { method: "PATCH", data: input }),
+    );
+  },
+  async remove(id: string) {
+    await apiRequest(`/account-groups/${id}`, { method: "DELETE" });
+  },
+};
+
+export const ledgerService = {
+  async list(options: {
+    page?: number;
+    pageSize?: number;
+    companyId: string;
+    accountGroupId?: string;
+    isCashBank?: boolean;
+    isActive?: boolean;
+  }) {
+    const page = options.page ?? 1;
+    const pageSize = options.pageSize ?? 20;
+    const response = await apiRequest("/ledgers", {
+      params: {
+        page,
+        page_size: pageSize,
+        company_id: options.companyId,
+        ...(options.accountGroupId ? { account_group_id: options.accountGroupId } : {}),
+        ...(options.isCashBank === undefined ? {} : { is_cash_bank: options.isCashBank }),
+        ...(options.isActive === undefined ? {} : { is_active: options.isActive }),
+      },
+    });
+    return ledgersAdapter(response, page, pageSize);
+  },
+  async get(id: string) {
+    return ledgerAdapter(await apiRequest(`/ledgers/${id}`));
+  },
+  async create(input: LedgerInput) {
+    return ledgerAdapter(await apiRequest("/ledgers", { method: "POST", data: input }));
+  },
+  async update(id: string, input: LedgerUpdate) {
+    return ledgerAdapter(
+      await apiRequest(`/ledgers/${id}`, { method: "PATCH", data: input }),
+    );
+  },
+  async remove(id: string) {
+    await apiRequest(`/ledgers/${id}`, { method: "DELETE" });
   },
 };
