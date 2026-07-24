@@ -2,6 +2,8 @@ import type {
   Company,
   FiscalYear,
   Page,
+  Party,
+  PartyType,
   Project,
   ProjectStatus,
   SessionToken,
@@ -159,4 +161,41 @@ export function projectStatusAdapter(value: unknown): ProjectStatus {
 export function projectStatusesAdapter(value: unknown): ProjectStatus[] {
   const result = collection(value, "project statuses");
   return result.items.map((item) => projectStatusAdapter(item));
+}
+
+export function partyAdapter(value: unknown): Party {
+  const data = object(payload(value), "party");
+  return {
+    id: requiredString(data.id, "party.id"),
+    companyId: requiredString(data.company_id, "party.company_id"),
+    partyTypeId: requiredString(data.party_type_id, "party.party_type_id"),
+    name: requiredString(data.name, "party.name"),
+    phone: optionalString(data.phone),
+    email: optionalString(data.email),
+    address: optionalString(data.address),
+    panNo: optionalString(data.pan_no),
+    isActive: data.is_active !== false,
+  };
+}
+
+export function partiesAdapter(value: unknown, page = 1, pageSize = 20): Page<Party> {
+  const result = collection(value, "parties");
+  return {
+    items: result.items.map((item) => partyAdapter(item)),
+    ...pagination(result.envelope, result.meta, page, pageSize),
+  };
+}
+
+export function partyTypeAdapter(value: unknown): PartyType {
+  const data = object(payload(value), "party type");
+  return {
+    id: requiredString(data.id, "party_type.id"),
+    name: requiredString(data.name, "party_type.name"),
+    ...(typeof data.is_active === "boolean" ? { isActive: data.is_active } : {}),
+  };
+}
+
+export function partyTypesAdapter(value: unknown): PartyType[] {
+  const result = collection(value, "party types");
+  return result.items.map((item) => partyTypeAdapter(item));
 }

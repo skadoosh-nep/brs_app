@@ -4,6 +4,7 @@ export type ProjectFormValue = {
   project_status_id: string;
   project_code: string;
   name: string;
+  client_id: string | null;
   location: string;
   contract_amount: string;
   start_date: string;
@@ -16,6 +17,7 @@ export function projectFormInitialValue(project?: Project): ProjectFormValue {
     project_status_id: project?.projectStatusId ?? "",
     project_code: project?.projectCode ?? "",
     name: project?.name ?? "",
+    client_id: project?.clientId ?? null,
     location: project?.location ?? "",
     contract_amount: project?.contractAmount ?? "0.00",
     start_date: project?.startDate ?? "",

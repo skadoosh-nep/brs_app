@@ -40,6 +40,7 @@ export default function AppTabsLayout() {
           tabBarIcon: ({ focused }) => <TabIcon symbol="▣" focused={focused} />,
         }}
       />
+      <Tabs.Screen name="parties" options={{ href: null }} />
     </Tabs>
   );
 }

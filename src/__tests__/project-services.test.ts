@@ -43,7 +43,7 @@ describe("project services", () => {
       end_date: null,
       description: null,
     });
-    await projectService.update("p1", { name: "New name" });
+    await projectService.update("p1", { name: "New name", client_id: "party-1" });
     await projectService.remove("p1");
     expect(mockedRequest).toHaveBeenNthCalledWith(
       1,
@@ -53,7 +53,7 @@ describe("project services", () => {
     expect(mockedRequest).toHaveBeenNthCalledWith(
       2,
       "/projects/p1",
-      { method: "PATCH", data: { name: "New name" } },
+      { method: "PATCH", data: { name: "New name", client_id: "party-1" } },
     );
     expect(mockedRequest).toHaveBeenNthCalledWith(
       3,

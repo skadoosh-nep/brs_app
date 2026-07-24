@@ -28,6 +28,7 @@ export default function EditProjectScreen() {
       project_status_id: value.project_status_id,
       project_code: value.project_code.trim(),
       name: value.name.trim(),
+      client_id: value.client_id,
       location: nullable(value.location),
       contract_amount: value.contract_amount.trim(),
       start_date: nullable(value.start_date),
@@ -46,9 +47,6 @@ export default function EditProjectScreen() {
         <Notice message={error} />
       ) : project ? (
         <Card>
-          {project.clientId ? (
-            <Notice tone="info" message="The existing client assignment is preserved and cannot be edited until Parties is implemented." />
-          ) : null}
           <ProjectForm
             project={project}
             statuses={statuses}

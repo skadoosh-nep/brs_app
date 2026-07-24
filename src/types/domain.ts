@@ -38,6 +38,24 @@ export type ProjectStatus = {
   isActive?: boolean;
 };
 
+export type Party = {
+  id: string;
+  companyId: string;
+  partyTypeId: string;
+  name: string;
+  phone: string | null;
+  email: string | null;
+  address: string | null;
+  panNo: string | null;
+  isActive: boolean;
+};
+
+export type PartyType = {
+  id: string;
+  name: string;
+  isActive?: boolean;
+};
+
 export type Page<T> = {
   items: T[];
   total?: number;

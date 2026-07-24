@@ -26,7 +26,7 @@ export default function CreateProjectScreen() {
       project_status_id: value.project_status_id,
       project_code: value.project_code.trim(),
       name: value.name.trim(),
-      client_id: null,
+      client_id: value.client_id,
       location: nullable(value.location),
       contract_amount: value.contract_amount.trim(),
       start_date: nullable(value.start_date),

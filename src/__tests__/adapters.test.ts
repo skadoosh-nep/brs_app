@@ -1,6 +1,9 @@
 import {
   companyAdapter,
   fiscalYearsAdapter,
+  partiesAdapter,
+  partyAdapter,
+  partyTypesAdapter,
   projectAdapter,
   projectsAdapter,
   projectStatusesAdapter,
@@ -73,5 +76,55 @@ describe("API response adapters", () => {
   it("rejects malformed projects", () => {
     expect(() => projectAdapter({ id: "p1", contract_amount: "0" }))
       .toThrow("project.company_id");
+  });
+
+  it("normalizes party entities and nullable contact fields", () => {
+    const item = {
+      id: "party-1",
+      company_id: "c1",
+      party_type_id: "type-1",
+      name: "Everest Suppliers",
+      phone: null,
+      email: "hello@example.com",
+      address: "",
+      pan_no: "123456",
+      is_active: false,
+    };
+    expect(partyAdapter({ data: item })).toMatchObject({
+      id: "party-1",
+      email: "hello@example.com",
+      address: null,
+      panNo: "123456",
+      isActive: false,
+    });
+    expect(partiesAdapter([item]).items).toHaveLength(1);
+  });
+
+  it("reads party collections and pagination from data or meta envelopes", () => {
+    const item = {
+      id: "party-1",
+      company_id: "c1",
+      party_type_id: "type-1",
+      name: "Everest Suppliers",
+    };
+    expect(
+      partiesAdapter({
+        data: { items: [item], page: 2, page_size: 10, total: 21 },
+      }),
+    ).toMatchObject({ page: 2, pageSize: 10, total: 21 });
+    expect(
+      partiesAdapter({
+        data: [item],
+        meta: { pagination: { page: 3, page_size: 20, total: 45 } },
+      }),
+    ).toMatchObject({ page: 3, pageSize: 20, total: 45 });
+  });
+
+  it("normalizes party types and rejects parties without identifiers", () => {
+    expect(
+      partyTypesAdapter({ items: [{ id: "type-1", name: "Client", is_active: true }] }),
+    ).toEqual([{ id: "type-1", name: "Client", isActive: true }]);
+    expect(() => partyAdapter({ company_id: "c1", party_type_id: "t1", name: "Missing id" }))
+      .toThrow("party.id");
   });
 });

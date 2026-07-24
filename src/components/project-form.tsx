@@ -9,6 +9,7 @@ import {
 import { ApiError, type Project, type ProjectStatus } from "@/types/domain";
 import { useToastStore } from "@/store/toast";
 import { ProjectStatusSelect } from "./project-status-select";
+import { PartySelect } from "./party-select";
 
 type Props = {
   project?: Project;
@@ -68,6 +69,12 @@ export function ProjectForm({ project, statuses, submitLabel, onSubmit }: Props)
         onChangeText={set("name")}
         error={fieldErrors.name}
         autoCapitalize="words"
+      />
+      <PartySelect
+        value={value.client_id}
+        onChange={(clientId) =>
+          setValue((current) => ({ ...current, client_id: clientId }))
+        }
       />
       <Field
         label="Location (optional)"

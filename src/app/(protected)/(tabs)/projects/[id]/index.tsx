@@ -4,13 +4,15 @@ import { Alert, Text, View } from "react-native";
 
 import { Button, Card, Header, Loading, Notice, Screen } from "@/components/ui";
 import { formatNpr } from "@/lib/format";
-import { projectService, projectStatusService } from "@/lib/services";
-import type { Project } from "@/types/domain";
+import { partyService, partyTypeService, projectService, projectStatusService } from "@/lib/services";
+import type { Party, Project } from "@/types/domain";
 
 export default function ProjectDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const [project, setProject] = useState<Project | null>(null);
   const [statusName, setStatusName] = useState("");
+  const [client, setClient] = useState<Party | null>(null);
+  const [clientTypeName, setClientTypeName] = useState("");
   const [error, setError] = useState("");
   const [deleting, setDeleting] = useState(false);
 
@@ -25,6 +27,20 @@ export default function ProjectDetailScreen() {
       setStatusName(
         statuses.find((status) => status.id === item.projectStatusId)?.name ?? "Status unavailable",
       );
+      if (item.clientId) {
+        const [assignedClient, partyTypes] = await Promise.all([
+          partyService.get(item.clientId),
+          partyTypeService.list(),
+        ]);
+        setClient(assignedClient);
+        setClientTypeName(
+          partyTypes.find((type) => type.id === assignedClient.partyTypeId)?.name ??
+            "Type unavailable",
+        );
+      } else {
+        setClient(null);
+        setClientTypeName("");
+      }
       setError("");
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Unable to load project");
@@ -76,7 +92,12 @@ export default function ProjectDetailScreen() {
           <Detail label="Start date" value={project.startDate ?? "Not set"} />
           <Detail label="End date" value={project.endDate ?? "Not set"} />
           <Detail label="Description" value={project.description ?? "Not set"} />
-          {project.clientId ? <Detail label="Client assigned" value={project.clientId} /> : null}
+          {project.clientId ? (
+            <Detail
+              label="Client assigned"
+              value={client ? `${client.name} · ${clientTypeName}` : "Unable to resolve client"}
+            />
+          ) : null}
           <View className="mt-7 gap-3">
             <Button
               title="Edit project"
