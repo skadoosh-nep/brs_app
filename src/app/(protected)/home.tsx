@@ -113,7 +113,10 @@ export default function HomeScreen() {
 
       {error ? <Notice message={error} /> : null}
 
-      <View className="mb-7 rounded-xl bg-primary p-5">
+      <Pressable
+        onPress={() => router.push("/(protected)/fiscal-years")}
+        className="mb-7 rounded-xl bg-primary p-5"
+      >
         <Text className="text-xs font-bold uppercase tracking-widest text-slate-300">
           Active workspace
         </Text>
@@ -134,13 +137,16 @@ export default function HomeScreen() {
             </Text>
           </View>
         </View>
-      </View>
+        <Text className="mt-4 text-xs font-bold uppercase tracking-wider text-amber">
+          Manage fiscal years →
+        </Text>
+      </Pressable>
 
       <Text className="mb-3 text-base font-semibold text-primary">Quick actions</Text>
       <View className="mb-7 flex-row gap-3">
         <QuickAction symbol="▣" label="Projects" onPress={() => router.push("/(protected)/(tabs)/projects")} />
+        <QuickAction symbol="◎" label="Parties" onPress={() => router.push("/(protected)/(tabs)/parties")} />
         <QuickAction symbol="⌂" label="Company" onPress={() => router.push("/(protected)/company")} />
-        <QuickAction symbol="◷" label="Fiscal year" onPress={() => router.push("/(protected)/fiscal-years")} />
       </View>
 
       <View className="mb-3 flex-row items-center justify-between">
