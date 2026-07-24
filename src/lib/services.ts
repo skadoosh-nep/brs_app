@@ -2,6 +2,9 @@ import {
   companyAdapter,
   fiscalYearAdapter,
   fiscalYearsAdapter,
+  partiesAdapter,
+  partyAdapter,
+  partyTypesAdapter,
   projectAdapter,
   projectsAdapter,
   projectStatusesAdapter,
@@ -34,7 +37,7 @@ export type ProjectInput = {
   project_status_id: string;
   project_code: string;
   name: string;
-  client_id: null;
+  client_id: string | null;
   location: string | null;
   contract_amount: string;
   start_date: string | null;
@@ -42,7 +45,21 @@ export type ProjectInput = {
   description: string | null;
 };
 
-export type ProjectUpdate = Omit<Partial<ProjectInput>, "company_id" | "client_id">;
+export type ProjectUpdate = Omit<Partial<ProjectInput>, "company_id">;
+
+export type PartyInput = {
+  company_id: string;
+  party_type_id: string;
+  name: string;
+  phone: string | null;
+  email: string | null;
+  address: string | null;
+  pan_no: string | null;
+};
+
+export type PartyUpdate = Omit<Partial<PartyInput>, "company_id"> & {
+  is_active?: boolean;
+};
 
 export const authService = {
   async login(email: string, password: string) {
@@ -218,5 +235,46 @@ export const projectService = {
 
   async remove(id: string) {
     await apiRequest(`/projects/${id}`, { method: "DELETE" });
+  },
+};
+
+export const partyTypeService = {
+  async list(isActive?: boolean) {
+    return partyTypesAdapter(await apiRequest("/masters/party-types", {
+      params: isActive === undefined ? {} : { is_active: isActive },
+    }));
+  },
+};
+
+export const partyService = {
+  async list(options: {
+    page?: number;
+    pageSize?: number;
+    partyTypeId?: string;
+    isActive?: boolean;
+  } = {}) {
+    const page = options.page ?? 1;
+    const pageSize = options.pageSize ?? 20;
+    const response = await apiRequest("/parties", {
+      params: {
+        page,
+        page_size: pageSize,
+        ...(options.partyTypeId ? { party_type_id: options.partyTypeId } : {}),
+        ...(options.isActive === undefined ? {} : { is_active: options.isActive }),
+      },
+    });
+    return partiesAdapter(response, page, pageSize);
+  },
+  async get(id: string) {
+    return partyAdapter(await apiRequest(`/parties/${id}`));
+  },
+  async create(input: PartyInput) {
+    return partyAdapter(await apiRequest("/parties", { method: "POST", data: input }));
+  },
+  async update(id: string, input: PartyUpdate) {
+    return partyAdapter(await apiRequest(`/parties/${id}`, { method: "PATCH", data: input }));
+  },
+  async remove(id: string) {
+    await apiRequest(`/parties/${id}`, { method: "DELETE" });
   },
 };
