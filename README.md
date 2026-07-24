@@ -54,3 +54,25 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+## Ledger Creation
+text' 
+“Cash or bank ledger” identifies an account that directly represents money held by the business.
+Turn it ON for:
+Cash in Hand
+Petty Cash
+Business bank accounts
+Separate current or savings accounts
+Digital wallets, if treated like cash
+
+Turn it OFF for:
+Suppliers and customers
+Accounts Payable or Receivable
+Sales and Purchases
+Expenses
+Loans
+Owner’s capital
+For Everest Electronics Pvt Ltd, keep it OFF because it is a supplier ledger, not a bank or cash account.
+The setting will later help BRS determine which accounts belong in the Cash Book, Bank Book, and payment/receipt workflows. It does not calculate the balance itself.
+'

@@ -21,9 +21,15 @@ const PAGE_SIZE = 20;
 export function PartySelect({
   value,
   onChange,
+  label = "Client (optional)",
+  modalTitle = "Select client",
+  emptyLabel = "No client assigned",
 }: {
   value: string | null;
-  onChange: (id: string | null) => void;
+  onChange: (id: string | null, party: Party | null) => void;
+  label?: string;
+  modalTitle?: string;
+  emptyLabel?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [parties, setParties] = useState<Party[]>([]);
@@ -108,7 +114,7 @@ export function PartySelect({
 
   function choose(party: Party | null) {
     setSelectedParty(party);
-    onChange(party?.id ?? null);
+    onChange(party?.id ?? null, party);
     setOpen(false);
   }
 
@@ -123,7 +129,7 @@ export function PartySelect({
 
   return (
     <View className="mb-4">
-      <Text className="mb-2 text-sm font-medium text-muted">Client (optional)</Text>
+      <Text className="mb-2 text-sm font-medium text-muted">{label}</Text>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel="Select project client"
@@ -133,7 +139,7 @@ export function PartySelect({
         <Text className={selectedParty ? "text-ink" : "text-muted"}>
           {value && selectedParty?.id === value
             ? selectedParty.name
-            : "No client assigned"}
+            : emptyLabel}
         </Text>
         {value && selectedParty?.id === value ? (
           <Text className="mt-1 text-xs text-muted">
@@ -152,7 +158,7 @@ export function PartySelect({
         <SafeAreaView className="flex-1 bg-canvas">
           <View className="flex-row items-center justify-between border-b border-line px-5 py-4">
             <View>
-              <Text className="text-xl font-semibold text-ink">Select client</Text>
+              <Text className="text-xl font-semibold text-ink">{modalTitle}</Text>
               <Text className="mt-1 text-xs text-muted">Active parties</Text>
             </View>
             <Pressable onPress={() => setOpen(false)} className="p-2">
@@ -171,7 +177,7 @@ export function PartySelect({
               className="mb-4 min-h-12 rounded border border-line bg-white px-4 text-base text-ink"
             />
             <Option
-              label="No client assigned"
+              label={emptyLabel}
               detail="Clear the current assignment"
               selected={!value}
               onPress={() => choose(null)}

@@ -41,6 +41,8 @@ export default function AppTabsLayout() {
         }}
       />
       <Tabs.Screen name="parties" options={{ href: null }} />
+      <Tabs.Screen name="ledgers" options={{ href: null }} />
+      <Tabs.Screen name="account-groups" options={{ href: null }} />
     </Tabs>
   );
 }

@@ -1,6 +1,10 @@
 import type {
+  AccountGroup,
+  AccountGroupNode,
+  AccountGroupType,
   Company,
   FiscalYear,
+  Ledger,
   Page,
   Party,
   PartyType,
@@ -198,4 +202,96 @@ export function partyTypeAdapter(value: unknown): PartyType {
 export function partyTypesAdapter(value: unknown): PartyType[] {
   const result = collection(value, "party types");
   return result.items.map((item) => partyTypeAdapter(item));
+}
+
+export function accountGroupTypeAdapter(value: unknown): AccountGroupType {
+  const data = object(payload(value), "account group type");
+  return {
+    id: requiredString(data.id, "account_group_type.id"),
+    name: requiredString(data.name, "account_group_type.name"),
+    ...(typeof data.is_active === "boolean" ? { isActive: data.is_active } : {}),
+  };
+}
+
+export function accountGroupTypesAdapter(value: unknown): AccountGroupType[] {
+  const result = collection(value, "account group types");
+  return result.items.map((item) => accountGroupTypeAdapter(item));
+}
+
+export function accountGroupAdapter(value: unknown): AccountGroup {
+  const data = object(payload(value), "account group");
+  return {
+    id: requiredString(data.id, "account_group.id"),
+    companyId: requiredString(data.company_id, "account_group.company_id"),
+    accountGroupTypeId: requiredString(
+      data.account_group_type_id,
+      "account_group.account_group_type_id",
+    ),
+    parentGroupId: optionalString(data.parent_group_id),
+    name: requiredString(data.name, "account_group.name"),
+    isActive: data.is_active !== false,
+  };
+}
+
+export function accountGroupsAdapter(
+  value: unknown,
+  page = 1,
+  pageSize = 20,
+): Page<AccountGroup> {
+  const result = collection(value, "account groups");
+  return {
+    items: result.items.map((item) => accountGroupAdapter(item)),
+    ...pagination(result.envelope, result.meta, page, pageSize),
+  };
+}
+
+function accountGroupNodeAdapter(value: unknown): AccountGroupNode {
+  const data = object(payload(value), "account group tree node");
+  const group = accountGroupAdapter(data);
+  const children = data.children ?? [];
+  if (!Array.isArray(children)) throw new Error("Invalid account group children");
+  return {
+    ...group,
+    children: children.map((child) => accountGroupNodeAdapter(child)),
+  };
+}
+
+export function accountGroupTreeAdapter(value: unknown): AccountGroupNode[] {
+  const root = payload(value);
+  if (Array.isArray(root)) return root.map((item) => accountGroupNodeAdapter(item));
+  const envelope = object(root, "account group tree");
+  const items = envelope.items ?? envelope.children;
+  if (!Array.isArray(items)) throw new Error("Invalid account group tree response");
+  return items.map((item) => accountGroupNodeAdapter(item));
+}
+
+export function ledgerAdapter(value: unknown): Ledger {
+  const data = object(payload(value), "ledger");
+  const balance = data.opening_balance;
+  if (typeof balance !== "string" && typeof balance !== "number") {
+    throw new Error("Missing ledger.opening_balance");
+  }
+  return {
+    id: requiredString(data.id, "ledger.id"),
+    companyId: requiredString(data.company_id, "ledger.company_id"),
+    accountGroupId: requiredString(data.account_group_id, "ledger.account_group_id"),
+    partyId: optionalString(data.party_id),
+    name: requiredString(data.name, "ledger.name"),
+    openingBalance: String(balance),
+    openingBalanceType: optionalString(data.opening_balance_type),
+    isCashBank: data.is_cash_bank === true,
+    allowProjectTracking:
+      typeof data.allow_project_tracking === "boolean"
+        ? data.allow_project_tracking
+        : null,
+    isActive: data.is_active !== false,
+  };
+}
+
+export function ledgersAdapter(value: unknown, page = 1, pageSize = 20): Page<Ledger> {
+  const result = collection(value, "ledgers");
+  return {
+    items: result.items.map((item) => ledgerAdapter(item)),
+    ...pagination(result.envelope, result.meta, page, pageSize),
+  };
 }

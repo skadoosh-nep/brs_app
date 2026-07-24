@@ -1,6 +1,12 @@
 import {
+  accountGroupAdapter,
+  accountGroupsAdapter,
+  accountGroupTreeAdapter,
+  accountGroupTypesAdapter,
   companyAdapter,
   fiscalYearsAdapter,
+  ledgerAdapter,
+  ledgersAdapter,
   partiesAdapter,
   partyAdapter,
   partyTypesAdapter,
@@ -126,5 +132,75 @@ describe("API response adapters", () => {
     ).toEqual([{ id: "type-1", name: "Client", isActive: true }]);
     expect(() => partyAdapter({ company_id: "c1", party_type_id: "t1", name: "Missing id" }))
       .toThrow("party.id");
+  });
+
+  it("normalizes account groups, types, pagination, and nested trees", () => {
+    const child = {
+      id: "g2",
+      company_id: "c1",
+      account_group_type_id: "t1",
+      parent_group_id: "g1",
+      name: "Current Assets",
+      is_active: true,
+      children: [],
+    };
+    const root = {
+      id: "g1",
+      company_id: "c1",
+      account_group_type_id: "t1",
+      parent_group_id: null,
+      name: "Assets",
+      is_active: true,
+      children: [child],
+    };
+    expect(accountGroupAdapter({ data: root })).toMatchObject({
+      id: "g1",
+      parentGroupId: null,
+    });
+    expect(accountGroupTreeAdapter({ data: [root] })[0].children[0].id).toBe("g2");
+    expect(accountGroupsAdapter({
+      data: { items: [root], page: 2, page_size: 10, total: 11 },
+    })).toMatchObject({ page: 2, pageSize: 10, total: 11 });
+    expect(accountGroupTypesAdapter([{ id: "t1", name: "Asset", is_active: true }]))
+      .toEqual([{ id: "t1", name: "Asset", isActive: true }]);
+  });
+
+  it("normalizes ledgers and preserves opening balances as decimal strings", () => {
+    const item = {
+      id: "l1",
+      company_id: "c1",
+      account_group_id: "g1",
+      party_id: null,
+      name: "Cash in Hand",
+      opening_balance: 1250.5,
+      opening_balance_type: "DR",
+      is_cash_bank: true,
+      allow_project_tracking: false,
+      is_active: true,
+    };
+    expect(ledgerAdapter({ data: item })).toMatchObject({
+      id: "l1",
+      openingBalance: "1250.5",
+      openingBalanceType: "DR",
+      isCashBank: true,
+    });
+    expect(ledgersAdapter({
+      data: [item],
+      meta: { pagination: { page: 3, page_size: 20, total: 50 } },
+    })).toMatchObject({ page: 3, pageSize: 20, total: 50 });
+  });
+
+  it("rejects malformed account groups and ledgers", () => {
+    expect(() => accountGroupAdapter({
+      id: "g1",
+      company_id: "c1",
+      name: "Missing type",
+    })).toThrow("account_group.account_group_type_id");
+    expect(() => ledgerAdapter({
+      id: "l1",
+      company_id: "c1",
+      account_group_id: "g1",
+      name: "Missing balance",
+    })).toThrow("ledger.opening_balance");
   });
 });
