@@ -38,4 +38,22 @@ describe("project form validation", () => {
     };
     expect(validateProjectForm(value)).toEqual({});
   });
+
+  it("initializes an existing project client assignment", () => {
+    expect(
+      projectFormInitialValue({
+        id: "p1",
+        companyId: "c1",
+        projectStatusId: "s1",
+        projectCode: "PRJ-1",
+        name: "Bridge",
+        clientId: "party-1",
+        location: null,
+        contractAmount: "0.00",
+        startDate: null,
+        endDate: null,
+        description: null,
+      }).client_id,
+    ).toBe("party-1");
+  });
 });
