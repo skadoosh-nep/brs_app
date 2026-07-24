@@ -56,6 +56,38 @@ export type PartyType = {
   isActive?: boolean;
 };
 
+export type AccountGroupType = {
+  id: string;
+  name: string;
+  isActive?: boolean;
+};
+
+export type AccountGroup = {
+  id: string;
+  companyId: string;
+  accountGroupTypeId: string;
+  parentGroupId: string | null;
+  name: string;
+  isActive: boolean;
+};
+
+export type AccountGroupNode = AccountGroup & {
+  children: AccountGroupNode[];
+};
+
+export type Ledger = {
+  id: string;
+  companyId: string;
+  accountGroupId: string;
+  partyId: string | null;
+  name: string;
+  openingBalance: string;
+  openingBalanceType: string | null;
+  isCashBank: boolean;
+  allowProjectTracking: boolean | null;
+  isActive: boolean;
+};
+
 export type Page<T> = {
   items: T[];
   total?: number;
